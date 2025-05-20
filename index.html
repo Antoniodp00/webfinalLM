@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness360 - Tu Entrenador Personal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header id="header">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <strong>Fitness360</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#servicios">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#caracteristicas">Características</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#testimonios">Testimonios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-success ms-lg-3" href="php/login.php">Iniciar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
+                    <h1>Transforma tu cuerpo y tu vida con <span>Fitness360</span></h1>
+                    <h2>La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="php/register.php" class="btn-get-started">Regístrate Ahora</a>
+                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="btn-watch-video" target="_blank">
+                            <i class="fas fa-play-circle"></i><span>Ver Video</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img">
+                    <img src="images/hero-img.png" class="img-fluid animated" alt="Fitness360 Hero Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Fitness360 ofrece una gama completa de servicios para ayudarte a alcanzar tus objetivos de fitness y bienestar.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="images/service-1.jpg" alt="Entrenamiento Personalizado">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Entrenamiento Personalizado</h5>
+                            <p class="card-text">Rutinas de ejercicio adaptadas a tus necesidades y objetivos específicos, diseñadas por entrenadores profesionales.</p>
+                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="images/service-2.jpg" alt="Planes Nutricionales">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Planes Nutricionales</h5>
+                            <p class="card-text">Dietas personalizadas creadas por nutricionistas expertos para complementar tu entrenamiento y maximizar resultados.</p>
+                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="images/service-3.jpg" alt="Seguimiento de Progreso">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Seguimiento de Progreso</h5>
+                            <p class="card-text">Revisiones periódicas para medir tu evolución, ajustar tu plan y mantenerte motivado en el camino hacia tus metas.</p>
+                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="caracteristicas" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Características de Fitness360</h2>
+                <p>Descubre todas las herramientas que Fitness360 pone a tu disposición para alcanzar tus objetivos de forma eficiente.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="images/features.jpg" class="img-fluid" alt="Características de Fitness360">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Una plataforma completa para tu bienestar</h3>
+                    <p class="fst-italic">
+                        Fitness360 integra todas las herramientas que necesitas para gestionar tu salud y entrenamiento en un solo lugar.
+                    </p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Rutinas de ejercicio personalizadas según tus objetivos</li>
+                        <li><i class="fas fa-check-circle"></i> Planes de alimentación adaptados a tus necesidades</li>
+                        <li><i class="fas fa-check-circle"></i> Seguimiento detallado de tus medidas y progreso</li>
+                        <li><i class="fas fa-check-circle"></i> Comunicación directa con entrenadores y nutricionistas</li>
+                        <li><i class="fas fa-check-circle"></i> Calendario de actividades y recordatorios</li>
+                        <li><i class="fas fa-check-circle"></i> Informes y estadísticas de tu evolución</li>
+                    </ul>
+                    <p>
+                        Con Fitness360, tendrás todo lo que necesitas para transformar tu cuerpo y mejorar tu calidad de vida de manera efectiva y sostenible.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="testimonials section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonios</h2>
+                <p>Descubre lo que nuestros usuarios opinan sobre Fitness360 y cómo ha transformado sus vidas.</p>
+            </div>
+
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="testimonial-item">
+                                    <img src="images/testimonial-1.jpg" class="testimonial-img" alt="">
+                                    <h3>María García</h3>
+                                    <h4>Cliente desde 2022</h4>
+                                    <p>
+                                        <i class="fas fa-quote-left"></i>
+                                        Fitness360 cambió completamente mi enfoque hacia el ejercicio. Las rutinas personalizadas y el seguimiento constante me han ayudado a perder 15kg en 6 meses de forma saludable.
+                                        <i class="fas fa-quote-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="testimonial-item">
+                                    <img src="images/testimonial-2.jpg" class="testimonial-img" alt="">
+                                    <h3>Carlos Rodríguez</h3>
+                                    <h4>Cliente desde 2021</h4>
+                                    <p>
+                                        <i class="fas fa-quote-left"></i>
+                                        Como deportista amateur, Fitness360 me ha ayudado a mejorar mi rendimiento y prevenir lesiones. Los planes nutricionales son excelentes y las revisiones periódicas me mantienen motivado.
+                                        <i class="fas fa-quote-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="testimonial-item">
+                                    <img src="images/testimonial-3.jpg" class="testimonial-img" alt="">
+                                    <h3>Laura Martínez</h3>
+                                    <h4>Cliente desde 2023</h4>
+                                    <p>
+                                        <i class="fas fa-quote-left"></i>
+                                        Después de mi embarazo, necesitaba recuperar mi forma física. Gracias a Fitness360 y sus profesionales, he conseguido resultados increíbles en poco tiempo y de forma segura.
+                                        <i class="fas fa-quote-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="testimonial-item">
+                                    <img src="images/testimonial-4.jpg" class="testimonial-img" alt="">
+                                    <h3>Javier López</h3>
+                                    <h4>Cliente desde 2022</h4>
+                                    <p>
+                                        <i class="fas fa-quote-left"></i>
+                                        Lo que más valoro de Fitness360 es la atención personalizada. Siempre recibo respuestas rápidas a mis dudas y los entrenadores se adaptan a mis necesidades cambiantes.
+                                        <i class="fas fa-quote-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>¿Tienes alguna pregunta sobre Fitness360? Ponte en contacto con nosotros y te responderemos lo antes posible.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Ubicación:</h4>
+                            <p>Calle Ejemplo 123, 28001 Madrid, España</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="fas fa-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>info@fitness360.com</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="fas fa-phone"></i>
+                            <h4>Teléfono:</h4>
+                            <p>+34 912 345 678</p>
+                        </div>
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6167379590934!2d-3.7037974846309875!3d40.41694937936723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2zUHVlcnRhIGRlbCBTb2wsIE1hZHJpZCwgRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1621345678901!5m2!1ses!2ses" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form action="php/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Tu Nombre</label>
+                                <input type="text" name="name" class="form-control" id="name" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email">Tu Email</label>
+                                <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" class="form-control" name="subject" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Cargando</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Fitness360</h3>
+                        <p>
+                            Calle Ejemplo 123 <br>
+                            28001 Madrid<br>
+                            España <br><br>
+                            <strong>Teléfono:</strong> +34 912 345 678<br>
+                            <strong>Email:</strong> info@fitness360.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Enlaces Útiles</h4>
+                        <ul>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Inicio</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#servicios">Servicios</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#caracteristicas">Características</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#testimonios">Testimonios</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Nuestros Servicios</h4>
+                        <ul>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Entrenamiento Personal</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Planes Nutricionales</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Seguimiento de Progreso</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Asesoramiento Deportivo</a></li>
+                            <li><i class="fas fa-chevron-right"></i> <a href="#">Comunidad Fitness</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Nuestras Redes Sociales</h4>
+                        <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades y consejos fitness.</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Fitness360</span></strong>. Todos los derechos reservados
+            </div>
+            <div class="credits">
+                Diseñado por <a href="#">Fitness360 Team</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

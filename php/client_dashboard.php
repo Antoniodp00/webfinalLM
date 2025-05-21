@@ -1,24 +1,39 @@
 <?php
-// Start session
+/**
+ * Panel de Cliente - Fitness360
+ * 
+ * Este archivo maneja la visualización del panel de control del cliente,
+ * mostrando su información personal, revisiones, dietas y rutinas asignadas.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
+
+// Iniciar sesión para manejar la autenticación del usuario
 session_start();
 
-// Check if the user is logged in, if not redirect to login page
+// Verificar si el usuario ha iniciado sesión como cliente, si no, redirigir a la página de login
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "cliente") {
     header("location: login.php");
     exit;
 }
 
-// Database connection
+// Variable para la conexión a la base de datos
 $db_connection = null;
 
-// Function to connect to the database
+/**
+ * Función para establecer conexión con la base de datos
+ * 
+ * @return boolean Verdadero si la conexión fue exitosa, falso en caso contrario
+ */
 function connectToDatabase() {
     global $db_connection;
 
-    // Include database configuration
+    // Incluir archivo de configuración de la base de datos
     require_once '../database/config_mysql.php';
 
     try {
+        // Crear conexión PDO
         $db_connection = new PDO(DB_HOST . ";" . DB_NOMBRE, DB_USUARIO, DB_CONTRA);
         $db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db_connection->exec("SET NAMES " . DB_CHARSET);
@@ -29,17 +44,17 @@ function connectToDatabase() {
     }
 }
 
-// Initialize variables
-$client_info = [];
-$revisiones = [];
-$dietas = [];
-$rutinas = [];
-$error_message = "";
+// Inicializar variables para almacenar datos del cliente
+$client_info = [];  // Información personal del cliente
+$revisiones = [];   // Revisiones físicas del cliente
+$dietas = [];       // Dietas asignadas al cliente
+$rutinas = [];      // Rutinas de ejercicio asignadas al cliente
+$error_message = ""; // Mensaje de error si ocurre algún problema
 
-// Get client information
+// Obtener toda la información del cliente desde la base de datos
 if(connectToDatabase()) {
     try {
-        // Get client information
+        // Consulta para obtener información personal del cliente
         $sql = "SELECT * FROM Cliente WHERE idCliente = :id";
         $stmt = $db_connection->prepare($sql);
         $stmt->bindParam(":id", $_SESSION["id"], PDO::PARAM_INT);
@@ -51,7 +66,7 @@ if(connectToDatabase()) {
             $error_message = "No se pudo obtener la información del cliente.";
         }
 
-        // Get client reviews
+        // Consulta para obtener las revisiones físicas del cliente
         $sql = "SELECT r.*, e.nombre as empleado_nombre, e.apellidos as empleado_apellidos 
                 FROM Revision r 
                 LEFT JOIN Empleado e ON r.idEmpleado = e.idEmpleado 
@@ -63,7 +78,7 @@ if(connectToDatabase()) {
 
         $revisiones = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Get client diets
+        // Consulta para obtener las dietas asignadas al cliente
         $sql = "SELECT d.*, cd.fechaAsignacion, cd.fechaFin, e.nombre as empleado_nombre, e.apellidos as empleado_apellidos 
                 FROM Dieta d 
                 JOIN ClienteDieta cd ON d.idDieta = cd.idDieta 
@@ -76,7 +91,7 @@ if(connectToDatabase()) {
 
         $dietas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Get client routines
+        // Consulta para obtener las rutinas de ejercicio asignadas al cliente
         $sql = "SELECT r.*, ur.fechaAsignacion, ur.fechaFin, e.nombre as empleado_nombre, e.apellidos as empleado_apellidos 
                 FROM Rutina r 
                 JOIN UsuarioRutina ur ON r.idRutina = ur.idRutina 
@@ -90,16 +105,22 @@ if(connectToDatabase()) {
         $rutinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     } catch(PDOException $e) {
+        // Capturar cualquier error de base de datos
         $error_message = "Error: " . $e->getMessage();
     }
 
-    // Close connection
+    // Cerrar conexión a la base de datos
     unset($db_connection);
 } else {
     $error_message = "Error de conexión a la base de datos.";
 }
 
-// Function to format date
+/**
+ * Función para formatear fechas al formato español (dd/mm/yyyy)
+ * 
+ * @param string $date Fecha en formato SQL
+ * @return string Fecha formateada o "N/A" si es nula
+ */
 function formatDate($date) {
     if(!$date) return "N/A";
     return date("d/m/Y", strtotime($date));
@@ -118,190 +139,6 @@ function formatDate($date) {
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: var(--gray-light);
-            padding-top: 70px;
-        }
-        .dashboard-container {
-            padding: 20px;
-        }
-        .dashboard-header {
-            margin-bottom: 30px;
-        }
-        .dashboard-header h1 {
-            color: var(--primary-dark);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .dashboard-card {
-            background: var(--light-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-        .dashboard-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .dashboard-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--gray-medium);
-            font-weight: 600;
-            position: relative;
-        }
-        .dashboard-card h3::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-        .profile-info {
-            margin-bottom: 20px;
-        }
-        .profile-info p {
-            margin-bottom: 12px;
-        }
-        .profile-info strong {
-            display: inline-block;
-            width: 150px;
-            color: var(--primary-dark);
-        }
-        .review-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--gray-medium);
-        }
-        .review-item:last-child {
-            border-bottom: none;
-        }
-        .review-date {
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        .review-metrics {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 15px 0;
-        }
-        .review-metric {
-            background: rgba(76, 175, 80, 0.1);
-            padding: 10px 15px;
-            border-radius: var(--border-radius);
-            margin-right: 12px;
-            margin-bottom: 12px;
-            transition: var(--transition);
-        }
-        .review-metric:hover {
-            background: rgba(76, 175, 80, 0.2);
-            transform: translateY(-2px);
-        }
-        .review-metric strong {
-            color: var(--primary-dark);
-        }
-        .review-observations {
-            margin-top: 15px;
-        }
-        .diet-item, .routine-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--gray-medium);
-        }
-        .diet-item:last-child, .routine-item:last-child {
-            border-bottom: none;
-        }
-        .diet-name, .routine-name {
-            font-weight: 600;
-            color: var(--primary-dark);
-            font-size: 18px;
-        }
-        .diet-dates, .routine-dates {
-            font-size: 0.9em;
-            color: var(--secondary-color);
-            margin: 8px 0;
-        }
-        .diet-description, .routine-description {
-            margin-top: 12px;
-        }
-        .nav-tabs {
-            border-bottom: 1px solid var(--gray-medium);
-            margin-bottom: 25px;
-        }
-        .nav-tabs .nav-link {
-            color: var(--dark-color);
-            border: none;
-            padding: 12px 20px;
-            margin-right: 5px;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-            transition: var(--transition);
-        }
-        .nav-tabs .nav-link:hover {
-            background-color: rgba(76, 175, 80, 0.1);
-            color: var(--primary-color);
-        }
-        .nav-tabs .nav-link.active {
-            color: var(--primary-color);
-            font-weight: 600;
-            background-color: rgba(76, 175, 80, 0.1);
-            border-bottom: 3px solid var(--primary-color);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            border-radius: var(--border-radius);
-            padding: 10px 20px;
-            font-weight: 500;
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        .btn-outline-primary {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-        .btn-outline-primary:hover {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-        }
-        .badge.bg-success {
-            background-color: var(--success-color) !important;
-        }
-        .badge.bg-warning {
-            background-color: var(--warning-color) !important;
-        }
-        .badge.bg-danger {
-            background-color: var(--danger-color) !important;
-        }
-        @media (max-width: 768px) {
-            .profile-info strong {
-                width: 120px;
-            }
-            .review-metrics {
-                flex-direction: column;
-            }
-            .review-metric {
-                margin-right: 0;
-            }
-            .nav-tabs .nav-link {
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -453,7 +290,7 @@ function formatDate($date) {
                                 <?php endif; ?>
                                 <?php if(!empty($revision["imagen"])): ?>
                                     <div class="review-image mt-2">
-                                        <img src="<?php echo htmlspecialchars($revision["imagen"]); ?>" alt="Imagen de revisión" class="img-fluid" style="max-height: 200px;">
+                                        <img src="<?php echo htmlspecialchars($revision["imagen"]); ?>" alt="Imagen de revisión" class="img-fluid">
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -607,29 +444,5 @@ function formatDate($date) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="../js/main.js"></script>
-    <script>
-        // JavaScript for handling tab persistence
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the active tab from localStorage
-            const activeTab = localStorage.getItem('activeClientTab');
-
-            // If there is an active tab stored, activate it
-            if (activeTab) {
-                const tab = document.querySelector(`#dashboardTabs button[data-bs-target="${activeTab}"]`);
-                if (tab) {
-                    const tabInstance = new bootstrap.Tab(tab);
-                    tabInstance.show();
-                }
-            }
-
-            // Store the active tab when a tab is clicked
-            const tabs = document.querySelectorAll('#dashboardTabs button');
-            tabs.forEach(tab => {
-                tab.addEventListener('shown.bs.tab', function(event) {
-                    localStorage.setItem('activeClientTab', event.target.getAttribute('data-bs-target'));
-                });
-            });
-        });
-    </script>
 </body>
 </html>

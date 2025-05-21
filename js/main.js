@@ -1,13 +1,13 @@
 /**
- * Fitness360 - Main JavaScript File
- * This file contains all the JavaScript functionality for the Fitness360 website
+ * Fitness360 - Archivo JavaScript Principal
+ * Este archivo contiene toda la funcionalidad JavaScript para el sitio web Fitness360
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     /**
-     * Easy selector helper function
+     * Función auxiliar para seleccionar elementos fácilmente
      */
     const select = (el, all = false) => {
         el = el.trim();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     /**
-     * Easy event listener function
+     * Función auxiliar para añadir event listeners fácilmente
      */
     const on = (type, el, listener, all = false) => {
         let selectEl = select(el, all);
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     /**
-     * Easy on scroll event listener 
+     * Función auxiliar para añadir event listeners de scroll fácilmente
      */
     const onscroll = (el, listener) => {
         el.addEventListener('scroll', listener);
     };
 
     /**
-     * Navbar links active state on scroll
+     * Estado activo de los enlaces de la barra de navegación al hacer scroll
      */
     let navbarlinks = select('#navbarNav .nav-link', true);
     const navbarlinksActive = () => {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     onscroll(document, navbarlinksActive);
 
     /**
-     * Scrolls to an element with header offset
+     * Desplazamiento a un elemento con compensación del encabezado
      */
     const scrollto = (el) => {
         let header = select('header');
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     /**
-     * Toggle .header-scrolled class to header when page is scrolled
+     * Alternar la clase .header-scrolled en el encabezado cuando se desplaza la página
      */
     let selectHeader = select('header');
     if (selectHeader) {
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Back to top button
+     * Botón para volver arriba
      */
     let backtotop = select('.back-to-top');
     if (backtotop) {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Mobile nav toggle
+     * Alternar navegación móvil
      */
     on('click', '.mobile-nav-toggle', function(e) {
         select('body').classList.toggle('mobile-nav-active');
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Scroll with offset on links with a class name .scrollto
+     * Desplazamiento con compensación en enlaces con el nombre de clase .scrollto
      */
     on('click', '.scrollto', function(e) {
         if (select(this.hash)) {
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, true);
 
     /**
-     * Scroll with offset on page load with hash links in the url
+     * Desplazamiento con compensación al cargar la página con enlaces hash en la URL
      */
     window.addEventListener('load', () => {
         if (window.location.hash) {
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Animation on scroll
+     * Animación al hacer scroll
      */
     window.addEventListener('load', () => {
         AOS.init({
@@ -156,37 +156,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Form validation and submission
+     * Validación y envío de formularios
      */
     const contactForm = document.querySelector('.php-email-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Simple validation
+
+            // Validación simple
             const name = this.querySelector('#name').value;
             const email = this.querySelector('#email').value;
             const subject = this.querySelector('#subject').value;
             const message = this.querySelector('#message').value;
-            
+
             if (!name || !email || !subject || !message) {
                 alert('Por favor, rellena todos los campos del formulario.');
                 return;
             }
-            
-            // Email validation
+
+            // Validación de email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, introduce un email válido.');
                 return;
             }
-            
-            // Show loading message
+
+            // Mostrar mensaje de carga
             this.querySelector('.loading').style.display = 'block';
             this.querySelector('.error-message').style.display = 'none';
             this.querySelector('.sent-message').style.display = 'none';
-            
-            // Simulate form submission (in a real scenario, this would be an AJAX call)
+
+            // Simular envío de formulario (en un escenario real, esto sería una llamada AJAX)
             setTimeout(() => {
                 this.querySelector('.loading').style.display = 'none';
                 this.querySelector('.sent-message').style.display = 'block';
@@ -196,25 +196,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Testimonial carousel
+     * Carrusel de testimonios
      */
     const testimonialCarousel = document.getElementById('testimonialCarousel');
     if (testimonialCarousel) {
-        // Initialize the Bootstrap carousel
+        // Inicializar el carrusel de Bootstrap
         const carousel = new bootstrap.Carousel(testimonialCarousel, {
             interval: 5000
         });
-        
-        // Add event listeners for custom controls
+
+        // Añadir event listeners para controles personalizados
         const prevButton = testimonialCarousel.querySelector('.carousel-control-prev');
         const nextButton = testimonialCarousel.querySelector('.carousel-control-next');
-        
+
         if (prevButton) {
             prevButton.addEventListener('click', function() {
                 carousel.prev();
             });
         }
-        
+
         if (nextButton) {
             nextButton.addEventListener('click', function() {
                 carousel.next();
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Service card hover effect
+     * Efecto hover en las tarjetas de servicios
      */
     const serviceCards = document.querySelectorAll('.services .card');
     if (serviceCards.length > 0) {
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = 'translateY(-10px)';
                 this.style.boxShadow = '0px 10px 30px rgba(1, 41, 112, 0.2)';
             });
-            
+
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
                 this.style.boxShadow = '0px 0 30px rgba(1, 41, 112, 0.1)';
@@ -241,28 +241,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Responsive navigation
+     * Navegación responsive
      */
     const handleResponsiveNav = () => {
         const width = window.innerWidth;
         const navItems = document.querySelectorAll('.navbar-nav .nav-item');
-        
+
         if (width < 768) {
-            // For mobile: Add special class to certain nav items
+            // Para móvil: Añadir clase especial a ciertos elementos de navegación
             navItems.forEach(item => {
                 if (item.classList.contains('hide-sm')) {
                     item.style.display = 'none';
                 }
             });
         } else {
-            // For desktop: Reset display
+            // Para escritorio: Restablecer visualización
             navItems.forEach(item => {
                 item.style.display = '';
             });
         }
     };
-    
-    // Run on load and resize
+
+    // Ejecutar al cargar y redimensionar
     window.addEventListener('load', handleResponsiveNav);
     window.addEventListener('resize', handleResponsiveNav);
+
+    /**
+     * Persistencia de pestañas en el panel de cliente
+     */
+    const clientTabs = document.querySelector('#dashboardTabs');
+    if (clientTabs) {
+        // Obtener la pestaña activa del localStorage
+        const activeTab = localStorage.getItem('activeClientTab');
+
+        // Si hay una pestaña activa almacenada, activarla
+        if (activeTab) {
+            const tab = document.querySelector(`#dashboardTabs button[data-bs-target="${activeTab}"]`);
+            if (tab) {
+                const tabInstance = new bootstrap.Tab(tab);
+                tabInstance.show();
+            }
+        }
+
+        // Almacenar la pestaña activa cuando se hace clic en una pestaña
+        const tabs = document.querySelectorAll('#dashboardTabs button');
+        tabs.forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                localStorage.setItem('activeClientTab', event.target.getAttribute('data-bs-target'));
+            });
+        });
+    }
 });

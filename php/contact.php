@@ -1,68 +1,87 @@
 <?php
-// Initialize variables
-$name = $email = $subject = $message = "";
-$name_err = $email_err = $subject_err = $message_err = "";
-$success_message = $error_message = "";
+/**
+ * Página de Contacto - Fitness360
+ * 
+ * Este archivo maneja el procesamiento del formulario de contacto,
+ * validando los datos ingresados y simulando el envío de un correo electrónico.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
 
-// Process form data when form is submitted
+// Inicializar variables para el formulario de contacto
+$name = $email = $subject = $message = "";  // Variables para almacenar los datos del formulario
+$name_err = $email_err = $subject_err = $message_err = "";  // Variables para mensajes de error
+$success_message = $error_message = "";  // Mensajes de éxito o error general
+
+/**
+ * Procesar datos del formulario cuando se envía mediante POST
+ * Realiza validación de todos los campos y prepara el envío del correo
+ */
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Validate name
+
+    // Validar el nombre (no puede estar vacío)
     if(empty(trim($_POST["name"]))) {
         $name_err = "Por favor ingrese su nombre.";
     } else {
         $name = trim($_POST["name"]);
     }
-    
-    // Validate email
+
+    // Validar el correo electrónico (formato válido)
     if(empty(trim($_POST["email"]))) {
         $email_err = "Por favor ingrese su correo electrónico.";
     } elseif(!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+        // Usar filter_var para validar el formato del correo
         $email_err = "Por favor ingrese un correo electrónico válido.";
     } else {
         $email = trim($_POST["email"]);
     }
-    
-    // Validate subject
+
+    // Validar el asunto (no puede estar vacío)
     if(empty(trim($_POST["subject"]))) {
         $subject_err = "Por favor ingrese el asunto.";
     } else {
         $subject = trim($_POST["subject"]);
     }
-    
-    // Validate message
+
+    // Validar el mensaje (no puede estar vacío)
     if(empty(trim($_POST["message"]))) {
         $message_err = "Por favor ingrese su mensaje.";
     } else {
         $message = trim($_POST["message"]);
     }
-    
-    // Check input errors before sending email
+
+    // Verificar que no haya errores antes de procesar el envío
     if(empty($name_err) && empty($email_err) && empty($subject_err) && empty($message_err)) {
-        // In a real application, you would send an email here
-        // For this example, we'll just simulate a successful submission
-        
-        // Prepare email content
-        $email_to = "info@fitness360.com"; // Replace with your email
+        // Nota: En un entorno de producción, aquí se enviaría un correo electrónico real
+        // Para este ejemplo, solo simulamos un envío exitoso
+
+        // Preparar el contenido del correo electrónico
+        $email_to = "info@fitness360.com"; // Dirección de correo del destinatario
         $email_subject = "Nuevo mensaje de contacto: " . $subject;
+
+        // Cuerpo del mensaje con todos los datos del formulario
         $email_body = "Has recibido un nuevo mensaje desde el formulario de contacto de Fitness360.\n\n".
                       "Detalles:\n\nNombre: " . $name . "\n".
                       "Email: " . $email . "\n".
                       "Asunto: " . $subject . "\n".
                       "Mensaje: " . $message . "\n";
+
+        // Cabeceras del correo
         $headers = "From: " . $email . "\r\n" .
                    "Reply-To: " . $email . "\r\n" .
                    "X-Mailer: PHP/" . phpversion();
-        
-        // Uncomment the following line to actually send the email in a production environment
+
+        // En producción, descomentar esta línea para enviar el correo
         // mail($email_to, $email_subject, $email_body, $headers);
-        
-        // Set success message
+
+        // Establecer mensaje de éxito para mostrar al usuario
         $success_message = "¡Mensaje enviado con éxito! Gracias por contactarnos.";
-        
-        // Clear form data
+
+        // Limpiar los datos del formulario después del envío exitoso
         $name = $email = $subject = $message = "";
     } else {
+        // Si hay errores, mostrar mensaje general
         $error_message = "Por favor corrija los errores en el formulario.";
     }
 }
@@ -80,29 +99,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #f7f8fa;
-            padding-top: 70px;
-        }
-        .contact-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-        }
-        .contact-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .contact-header h1 {
-            color: #37517e;
-        }
-    </style>
 </head>
-<body>
+<body class="contact-page">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
@@ -159,25 +157,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="name" id="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
                     <div class="invalid-feedback"><?php echo $name_err; ?></div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="email" class="form-label">Correo Electrónico</label>
                     <input type="email" name="email" id="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
                     <div class="invalid-feedback"><?php echo $email_err; ?></div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="subject" class="form-label">Asunto</label>
                     <input type="text" name="subject" id="subject" class="form-control <?php echo (!empty($subject_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $subject; ?>">
                     <div class="invalid-feedback"><?php echo $subject_err; ?></div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="message" class="form-label">Mensaje</label>
                     <textarea name="message" id="message" rows="5" class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>"><?php echo $message; ?></textarea>
                     <div class="invalid-feedback"><?php echo $message_err; ?></div>
                 </div>
-                
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
                     <a href="../index.html" class="btn btn-outline-secondary">Volver a la página principal</a>

@@ -1,18 +1,33 @@
 <?php
-// Start session
+/**
+ * Página de Registro - Fitness360
+ * 
+ * Este archivo maneja el proceso de registro de nuevos clientes,
+ * validando los datos ingresados y creando una nueva cuenta en la base de datos.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
+
+// Iniciar sesión para manejar el estado del usuario
 session_start();
 
-// Database connection
+// Variable para la conexión a la base de datos
 $db_connection = null;
 
-// Function to connect to the database
+/**
+ * Función para establecer conexión con la base de datos
+ * 
+ * @return boolean Verdadero si la conexión fue exitosa, falso en caso contrario
+ */
 function connectToDatabase() {
     global $db_connection;
 
-    // Include database configuration
+    // Incluir archivo de configuración de la base de datos
     require_once '../database/config_mysql.php';
 
     try {
+        // Crear conexión PDO
         $db_connection = new PDO(DB_HOST . ";" . DB_NOMBRE, DB_USUARIO, DB_CONTRA);
         $db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db_connection->exec("SET NAMES " . DB_CHARSET);
@@ -262,85 +277,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: var(--gray-light);
-        }
-        .register-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 30px;
-            background: var(--light-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        .register-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .register-logo h1 {
-            font-size: 36px;
-            margin: 0;
-            color: var(--primary-dark);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        .register-form .form-group {
-            margin-bottom: 20px;
-        }
-        .register-form .form-control {
-            height: 50px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--gray-medium);
-            padding: 10px 15px;
-            transition: var(--transition);
-        }
-        .register-form .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-        .register-form .form-check-input:checked {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        .register-form .btn-primary {
-            height: 50px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-        }
-        .register-form .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        .register-form .login-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .register-form .login-link a {
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        .register-form .login-link a:hover {
-            color: var(--primary-dark);
-        }
-        .btn-outline-secondary {
-            transition: var(--transition);
-        }
-        .btn-outline-secondary:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--light-color);
-        }
-    </style>
 </head>
-<body>
+<body class="register-page">
     <div class="container">
         <div class="register-container">
             <div class="register-logo">

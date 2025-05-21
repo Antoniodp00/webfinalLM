@@ -1,14 +1,24 @@
 <?php
-// Initialize the session
+/**
+ * Página de Cierre de Sesión - Fitness360
+ * 
+ * Este archivo maneja el cierre de sesión del usuario,
+ * eliminando todas las variables de sesión y redirigiendo al login.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
+
+// Inicializar la sesión para poder cerrarla
 session_start();
 
-// Unset all of the session variables
+// Eliminar todas las variables de sesión
 $_SESSION = array();
 
-// Destroy the session.
+// Destruir completamente la sesión
 session_destroy();
 
-// Redirect to login page
+// Redirigir al usuario a la página de inicio de sesión
 header("location: login.php");
 exit;
 ?>

@@ -1,24 +1,39 @@
 <?php
-// Start session
+/**
+ * Panel de Empleado - Fitness360
+ * 
+ * Este archivo maneja la visualización del panel de control del empleado,
+ * mostrando su información personal y funcionalidades específicas para empleados.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
+
+// Iniciar sesión para manejar la autenticación del usuario
 session_start();
 
-// Check if the user is logged in, if not redirect to login page
+// Verificar si el usuario ha iniciado sesión como empleado, si no, redirigir a la página de login
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "empleado") {
     header("location: login.php");
     exit;
 }
 
-// Database connection
+// Variable para la conexión a la base de datos
 $db_connection = null;
 
-// Function to connect to the database
+/**
+ * Función para establecer conexión con la base de datos
+ * 
+ * @return boolean Verdadero si la conexión fue exitosa, falso en caso contrario
+ */
 function connectToDatabase() {
     global $db_connection;
 
-    // Include database configuration
+    // Incluir archivo de configuración de la base de datos
     require_once '../database/config_mysql.php';
 
     try {
+        // Crear conexión PDO
         $db_connection = new PDO(DB_HOST . ";" . DB_NOMBRE, DB_USUARIO, DB_CONTRA);
         $db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db_connection->exec("SET NAMES " . DB_CHARSET);
@@ -29,14 +44,14 @@ function connectToDatabase() {
     }
 }
 
-// Initialize variables
-$employee_info = [];
-$error_message = "";
+// Inicializar variables para almacenar datos del empleado
+$employee_info = [];  // Información personal del empleado
+$error_message = "";  // Mensaje de error si ocurre algún problema
 
-// Get employee information
+// Obtener información del empleado desde la base de datos
 if(connectToDatabase()) {
     try {
-        // Get employee information
+        // Consulta para obtener información personal del empleado
         $sql = "SELECT * FROM Empleado WHERE idEmpleado = :id";
         $stmt = $db_connection->prepare($sql);
         $stmt->bindParam(":id", $_SESSION["id"], PDO::PARAM_INT);
@@ -49,10 +64,11 @@ if(connectToDatabase()) {
         }
 
     } catch(PDOException $e) {
+        // Capturar cualquier error de base de datos
         $error_message = "Error: " . $e->getMessage();
     }
 
-    // Close connection
+    // Cerrar conexión a la base de datos
     unset($db_connection);
 } else {
     $error_message = "Error de conexión a la base de datos.";
@@ -71,140 +87,8 @@ if(connectToDatabase()) {
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: var(--gray-light);
-            padding-top: 70px;
-        }
-        .dashboard-container {
-            padding: 20px;
-        }
-        .dashboard-header {
-            margin-bottom: 30px;
-        }
-        .dashboard-header h1 {
-            color: var(--primary-dark);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .dashboard-card {
-            background: var(--light-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            margin-bottom: 30px;
-            transition: var(--transition);
-        }
-        .dashboard-card:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .dashboard-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--gray-medium);
-            font-weight: 600;
-            position: relative;
-        }
-        .dashboard-card h3::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-        .profile-info {
-            margin-bottom: 20px;
-        }
-        .profile-info p {
-            margin-bottom: 12px;
-        }
-        .profile-info strong {
-            display: inline-block;
-            width: 150px;
-            color: var(--primary-dark);
-        }
-        .feature-card {
-            background: var(--light-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            margin-bottom: 30px;
-            text-align: center;
-            transition: var(--transition);
-            height: 100%;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        .feature-icon {
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            background-color: rgba(76, 175, 80, 0.1);
-            width: 100px;
-            height: 100px;
-            line-height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            transition: var(--transition);
-        }
-        .feature-card:hover .feature-icon {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-            transform: scale(1.1);
-        }
-        .feature-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-        .feature-description {
-            color: var(--dark-color);
-            margin-bottom: 25px;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            border-radius: var(--border-radius);
-            padding: 10px 20px;
-            font-weight: 500;
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        .badge.bg-success {
-            background-color: var(--success-color) !important;
-        }
-        .badge.bg-warning {
-            background-color: var(--warning-color) !important;
-        }
-        .badge.bg-danger {
-            background-color: var(--danger-color) !important;
-        }
-        @media (max-width: 768px) {
-            .profile-info strong {
-                width: 120px;
-            }
-            .feature-card {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="dashboard-page">
     <!-- Navbar -->
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">

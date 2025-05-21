@@ -1,18 +1,33 @@
 <?php
-// Start session
+/**
+ * Página de Inicio de Sesión - Fitness360
+ * 
+ * Este archivo maneja la autenticación de usuarios, permitiendo el acceso
+ * tanto a clientes como a empleados del gimnasio.
+ * 
+ * @author Fitness360 Team
+ * @version 1.0
+ */
+
+// Iniciar sesión para manejar la autenticación del usuario
 session_start();
 
-// Database connection
+// Variable para la conexión a la base de datos
 $db_connection = null;
 
-// Function to connect to the database
+/**
+ * Función para establecer conexión con la base de datos
+ * 
+ * @return boolean Verdadero si la conexión fue exitosa, falso en caso contrario
+ */
 function connectToDatabase() {
     global $db_connection;
 
-    // Include database configuration
+    // Incluir archivo de configuración de la base de datos
     require_once '../database/config_mysql.php';
 
     try {
+        // Crear conexión PDO
         $db_connection = new PDO(DB_HOST . ";" . DB_NOMBRE, DB_USUARIO, DB_CONTRA);
         $db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db_connection->exec("SET NAMES " . DB_CHARSET);
@@ -23,126 +38,125 @@ function connectToDatabase() {
     }
 }
 
-// Initialize variables
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
+// Inicializar variables para el formulario de login
+$username = $password = "";  // Variables para almacenar los datos del formulario
+$username_err = $password_err = $login_err = "";  // Variables para mensajes de error
 
-// Process form data when form is submitted
+// Procesar datos del formulario cuando se envía mediante POST
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Check if username is empty
+    // Validar el nombre de usuario
     if(empty(trim($_POST["username"]))) {
         $username_err = "Por favor ingrese su nombre de usuario.";
     } else {
         $username = trim($_POST["username"]);
     }
 
-    // Check if password is empty
+    // Validar la contraseña
     if(empty(trim($_POST["password"]))) {
         $password_err = "Por favor ingrese su contraseña.";
     } else {
         $password = trim($_POST["password"]);
     }
 
-    // Validate credentials
+    // Si no hay errores de validación, intentar autenticar al usuario
     if(empty($username_err) && empty($password_err)) {
-        // Connect to database
+        // Conectar a la base de datos
         if(connectToDatabase()) {
-            // Prepare a select statement
+            // Primero verificar si es un cliente
             $sql = "SELECT idCliente, nombreUsuario, password FROM Cliente WHERE nombreUsuario = :username";
 
             if($stmt = $db_connection->prepare($sql)) {
-                // Bind variables to the prepared statement as parameters
+                // Vincular parámetros a la consulta preparada
                 $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
-                // Set parameters
                 $param_username = $username;
 
-                // Attempt to execute the prepared statement
+                // Ejecutar la consulta
                 if($stmt->execute()) {
-                    // Check if username exists, if yes then verify password
+                    // Verificar si existe el usuario como cliente
                     if($stmt->rowCount() == 1) {
                         if($row = $stmt->fetch()) {
                             $id = $row["idCliente"];
                             $username = $row["nombreUsuario"];
                             $hashed_password = $row["password"];
 
-                            // Use password_verify to check the hashed password
+                            // Verificar la contraseña usando password_verify
                             if(password_verify($password, $hashed_password)) {
-                                // Password is correct, start a new session
+                                // Contraseña correcta, iniciar sesión como cliente
                                 session_start();
 
-                                // Store data in session variables
+                                // Almacenar datos en variables de sesión
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
                                 $_SESSION["user_type"] = "cliente";
 
-                                // Redirect user to client dashboard
+                                // Redirigir al panel de cliente
                                 header("location: client_dashboard.php");
                             } else {
-                                // Password is not valid
+                                // Contraseña incorrecta
                                 $login_err = "Nombre de usuario o contraseña incorrectos.";
                             }
                         }
                     } else {
-                        // Check if it's an employee
+                        // Si no es cliente, verificar si es empleado
                         $sql = "SELECT idEmpleado, nombreUsuario, password FROM Empleado WHERE nombreUsuario = :username";
 
                         if($stmt = $db_connection->prepare($sql)) {
-                            // Bind variables to the prepared statement as parameters
+                            // Vincular parámetros a la consulta preparada
                             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-
-                            // Set parameters
                             $param_username = $username;
 
-                            // Attempt to execute the prepared statement
+                            // Ejecutar la consulta
                             if($stmt->execute()) {
-                                // Check if username exists, if yes then verify password
+                                // Verificar si existe el usuario como empleado
                                 if($stmt->rowCount() == 1) {
                                     if($row = $stmt->fetch()) {
                                         $id = $row["idEmpleado"];
                                         $username = $row["nombreUsuario"];
                                         $hashed_password = $row["password"];
 
-                                        // Use password_verify to check the hashed password
+                                        // Verificar la contraseña usando password_verify
                                         if(password_verify($password, $hashed_password)) {
-                                            // Password is correct, start a new session
+                                            // Contraseña correcta, iniciar sesión como empleado
                                             session_start();
 
-                                            // Store data in session variables
+                                            // Almacenar datos en variables de sesión
                                             $_SESSION["loggedin"] = true;
                                             $_SESSION["id"] = $id;
                                             $_SESSION["username"] = $username;
                                             $_SESSION["user_type"] = "empleado";
 
-                                            // Redirect user to employee dashboard
+                                            // Redirigir al panel de empleado
                                             header("location: employee_dashboard.php");
                                         } else {
-                                            // Password is not valid
+                                            // Contraseña incorrecta
                                             $login_err = "Nombre de usuario o contraseña incorrectos.";
                                         }
                                     }
                                 } else {
-                                    // Username doesn't exist
+                                    // El usuario no existe ni como cliente ni como empleado
                                     $login_err = "Nombre de usuario o contraseña incorrectos.";
                                 }
                             } else {
+                                // Error al ejecutar la consulta
                                 $login_err = "Algo salió mal. Por favor, inténtelo de nuevo más tarde.";
                             }
                         }
                     }
                 } else {
+                    // Error al ejecutar la consulta
                     $login_err = "Algo salió mal. Por favor, inténtelo de nuevo más tarde.";
                 }
 
-                // Close statement
+                // Liberar recursos
                 unset($stmt);
             }
 
-            // Close connection
+            // Cerrar conexión a la base de datos
             unset($db_connection);
         } else {
+            // Error de conexión a la base de datos
             $login_err = "Error de conexión a la base de datos. Por favor, inténtelo de nuevo más tarde.";
         }
     }
@@ -161,84 +175,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: var(--gray-light);
-        }
-        .login-container {
-            max-width: 450px;
-            margin: 100px auto;
-            padding: 30px;
-            background: var(--light-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        .login-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .login-logo h1 {
-            font-size: 36px;
-            margin: 0;
-            color: var(--primary-dark);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        .login-form .form-group {
-            margin-bottom: 20px;
-        }
-        .login-form .form-control {
-            height: 50px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--gray-medium);
-            padding: 10px 15px;
-            transition: var(--transition);
-        }
-        .login-form .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-        .login-form .btn-primary {
-            height: 50px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-        }
-        .login-form .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        .login-form .forgot-password {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .login-form .forgot-password a {
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-        .login-form .forgot-password a:hover {
-            color: var(--primary-dark);
-        }
-        .login-form .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .login-form .register-link a {
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        .login-form .register-link a:hover {
-            color: var(--primary-dark);
-        }
-    </style>
 </head>
-<body>
+<body class="login-page">
     <div class="container">
         <div class="login-container">
             <div class="login-logo">

@@ -169,7 +169,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Fitness360</title>
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 CSS - Framework CSS para el diseño responsive y componentes de interfaz -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/styles.css">
@@ -190,6 +190,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }        
             ?>
 
+            <!-- Formulario de login - Componentes Bootstrap para formulario de inicio de sesión con validación -->
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="login-form">
                 <div class="form-group">
                     <label for="username">Nombre de Usuario</label>
@@ -222,7 +223,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <!-- Bootstrap 5 JS Bundle with Popper - Biblioteca JavaScript para funcionalidades interactivas de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -13,34 +13,34 @@
 </head>
 <body>
     <!-- Header/Navbar - Componente Bootstrap para la barra de navegación responsive -->
-    <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <header id="header" class="shadow-sm bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <strong>Fitness360</strong>
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    Fitness360
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.html">Inicio</a>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link active rounded py-2 px-3" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link rounded py-2 px-3" href="#servicios">Servicios</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link rounded py-2 px-3" href="#caracteristicas">Características</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link rounded py-2 px-3" href="#testimonios">Testimonios</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link rounded py-2 px-3" href="#contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#servicios">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#caracteristicas">Características</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#testimonios">Testimonios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contacto">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-success ms-lg-3" href="php/login.php">Iniciar Sesión</a>
+                            <a class="nav-link btn btn-success ms-lg-3 text-white fw-medium shadow-sm" href="php/login.php">Iniciar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -49,21 +49,21 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center bg-black bg-gradient text-white">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
-                    <h1>Transforma tu cuerpo y tu vida con <span>Fitness360</span></h1>
-                    <h2>La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
+                    <h1 class="fw-bold mb-4">Transforma tu cuerpo y tu vida con <span class="text-light position-relative">Fitness360</span></h1>
+                    <h2 class="fs-4 fw-normal text-light opacity-75 mb-4">La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="php/register.php" class="btn-get-started">Regístrate Ahora</a>
-                        <a href="#" class="btn-watch-video" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <i class="fas fa-play-circle"></i><span>Ver Video</span>
+                        <a href="php/register.php" class="btn btn-light btn-lg fw-semibold px-4 py-3 rounded-3 shadow-sm me-3 text-success text-uppercase">Regístrate Ahora</a>
+                        <a href="#" class="btn btn-outline-light d-inline-flex align-items-center px-3 py-3 rounded-3" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            <i class="fas fa-play-circle fs-4 me-2"></i><span>Ver Video</span>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img">
-                    <img src="images/hero-img.png" class="img-fluid animated" alt="Fitness360 Hero Image">
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <img src="images/hero-img.png" class="img-fluid" alt="Fitness360 Hero Image">
                 </div>
             </div>
         </div>
@@ -93,65 +93,146 @@
     </div>
 
     <!-- Services Section -->
-    <section id="servicios" class="services section-bg">
+    <section id="servicios" class="py-5 bg-light">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Servicios</h2>
-                <p>Fitness360 ofrece una gama completa de servicios para ayudarte a alcanzar tus objetivos de fitness y bienestar.</p>
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3 position-relative pb-3 text-success">Nuestros Servicios</h2>
+                <p class="lead">Fitness360 ofrece una gama completa de servicios para ayudarte a alcanzar tus objetivos de fitness y bienestar.</p>
             </div>
 
             <!-- Progress Bar Section - Componentes Bootstrap para mostrar barras de progreso -->
             <div class="row mb-5">
                 <div class="col-12">
                     <h4 class="text-center mb-4">Nuestro progreso en satisfacción de clientes</h4>
-                    <div class="progress mb-3" style="height: 25px;">
+                    <div class="progress mb-3 rounded-3">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Entrenamiento Personal (95%)</div>
                     </div>
-                    <div class="progress mb-3" style="height: 25px;">
+                    <div class="progress mb-3 rounded-3">
                         <div class="progress-bar bg-info" role="progressbar" style="width: 88%;" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">Planes Nutricionales (88%)</div>
                     </div>
-                    <div class="progress mb-3" style="height: 25px;">
+                    <div class="progress mb-3 rounded-3">
                         <div class="progress-bar bg-warning" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">Seguimiento de Progreso (92%)</div>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/service-1.jpg" alt="Entrenamiento Personalizado">
+            <div class="row" id="servicios-container">
+                <!-- Página 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="1">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-1.jpg" class="card-img-top" alt="Entrenamiento Personalizado">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Entrenamiento Personalizado</h5>
-                            <p class="card-text">Rutinas de ejercicio adaptadas a tus necesidades y objetivos específicos, diseñadas por entrenadores profesionales.</p>
-                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/service-2.jpg" alt="Planes Nutricionales">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Planes Nutricionales</h5>
-                            <p class="card-text">Dietas personalizadas creadas por nutricionistas expertos para complementar tu entrenamiento y maximizar resultados.</p>
-                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Entrenamiento Personalizado</h5>
+                            <p class="card-text mb-3">Rutinas de ejercicio adaptadas a tus necesidades y objetivos específicos, diseñadas por entrenadores profesionales.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="images/service-3.jpg" alt="Seguimiento de Progreso">
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="1">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-2.jpg" class="card-img-top" alt="Planes Nutricionales">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Seguimiento de Progreso</h5>
-                            <p class="card-text">Revisiones periódicas para medir tu evolución, ajustar tu plan y mantenerte motivado en el camino hacia tus metas.</p>
-                            <div class="read-more"><a href="#"><i class="fas fa-arrow-right"></i> Leer Más</a></div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Planes Nutricionales</h5>
+                            <p class="card-text mb-3">Dietas personalizadas creadas por nutricionistas expertos para complementar tu entrenamiento y maximizar resultados.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="1">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-3.jpg" class="card-img-top" alt="Seguimiento de Progreso">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Seguimiento de Progreso</h5>
+                            <p class="card-text mb-3">Revisiones periódicas para medir tu evolución, ajustar tu plan y mantenerte motivado en el camino hacia tus metas.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="2" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-1.jpg" class="card-img-top" alt="Clases Grupales">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Clases Grupales</h5>
+                            <p class="card-text mb-3">Sesiones de entrenamiento en grupo para aumentar tu motivación y disfrutar del ejercicio en un ambiente social y dinámico.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="2" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-2.jpg" class="card-img-top" alt="Entrenamiento Online">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Entrenamiento Online</h5>
+                            <p class="card-text mb-3">Accede a tus rutinas y planes desde cualquier lugar, con seguimiento remoto y videollamadas con tu entrenador personal.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="2" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-3.jpg" class="card-img-top" alt="Evaluación Física">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Evaluación Física</h5>
+                            <p class="card-text mb-3">Análisis completo de tu condición física actual para establecer un punto de partida y objetivos realistas para tu entrenamiento.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Página 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="3" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-1.jpg" class="card-img-top" alt="Rehabilitación Deportiva">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Rehabilitación Deportiva</h5>
+                            <p class="card-text mb-3">Programas especializados para recuperarte de lesiones y volver a la actividad física de forma segura y progresiva.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="3" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-2.jpg" class="card-img-top" alt="Suplementación Deportiva">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Suplementación Deportiva</h5>
+                            <p class="card-text mb-3">Asesoramiento personalizado sobre suplementos nutricionales para optimizar tu rendimiento y recuperación muscular.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4 servicio-card" data-page="3" style="display: none;">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                        <div class="overflow-hidden">
+                            <img src="images/service-3.jpg" class="card-img-top" alt="Preparación Competiciones">
+                        </div>
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-success mb-3">Preparación Competiciones</h5>
+                            <p class="card-text mb-3">Planes específicos para deportistas que se preparan para competiciones, con periodización del entrenamiento y nutrición especializada.</p>
+                            <div class="mt-auto"><a href="#" class="text-success fw-medium text-uppercase d-inline-flex align-items-center"><i class="fas fa-arrow-right me-2"></i> Leer Más</a></div>
                         </div>
                     </div>
                 </div>
@@ -161,21 +242,21 @@
             <div class="row mt-5">
                 <div class="col-12">
                     <nav aria-label="Navegación de servicios">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                        <ul class="pagination justify-content-center" id="servicios-pagination">
+                            <li class="page-item disabled" id="prev-page">
+                                <a class="page-link rounded-start-3 border-0 shadow-sm" href="#servicios" tabindex="-1" aria-disabled="true">Anterior</a>
                             </li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">1</a>
+                            <li class="page-item active" aria-current="page" data-page="1">
+                                <a class="page-link border-0 bg-success shadow-sm" href="#servicios">1</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
+                            <li class="page-item" data-page="2">
+                                <a class="page-link border-0 shadow-sm" href="#servicios">2</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
+                            <li class="page-item" data-page="3">
+                                <a class="page-link border-0 shadow-sm" href="#servicios">3</a>
                             </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Siguiente</a>
+                            <li class="page-item" id="next-page">
+                                <a class="page-link rounded-end-3 border-0 shadow-sm" href="#servicios">Siguiente</a>
                             </li>
                         </ul>
                     </nav>
@@ -185,31 +266,31 @@
     </section>
 
     <!-- Features Section -->
-    <section id="caracteristicas" class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Características de Fitness360</h2>
-                <p>Descubre todas las herramientas que Fitness360 pone a tu disposición para alcanzar tus objetivos de forma eficiente.</p>
+    <section id="caracteristicas" class="py-5 bg-white position-relative overflow-hidden">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3 position-relative pb-3 text-success">Características de Fitness360</h2>
+                <p class="lead">Descubre todas las herramientas que Fitness360 pone a tu disposición para alcanzar tus objetivos de forma eficiente.</p>
             </div>
 
-            <div class="row">
+            <div class="row g-4 align-items-center">
                 <div class="col-lg-6">
-                    <img src="images/features.jpg" class="img-fluid" alt="Características de Fitness360">
+                    <img src="images/features.jpg" class="img-fluid rounded-4 shadow-sm" alt="Características de Fitness360">
                 </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 content">
-                    <h3>Una plataforma completa para tu bienestar</h3>
-                    <p class="fst-italic">
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <h3 class="fw-bold mb-4 text-success position-relative pb-3">Una plataforma completa para tu bienestar</h3>
+                    <p class="fst-italic mb-4">
                         Fitness360 integra todas las herramientas que necesitas para gestionar tu salud y entrenamiento en un solo lugar.
                     </p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Rutinas de ejercicio personalizadas según tus objetivos</li>
-                        <li><i class="fas fa-check-circle"></i> Planes de alimentación adaptados a tus necesidades</li>
-                        <li><i class="fas fa-check-circle"></i> Seguimiento detallado de tus medidas y progreso</li>
-                        <li><i class="fas fa-check-circle"></i> Comunicación directa con entrenadores y nutricionistas</li>
-                        <li><i class="fas fa-check-circle"></i> Calendario de actividades y recordatorios</li>
-                        <li><i class="fas fa-check-circle"></i> Informes y estadísticas de tu evolución</li>
+                    <ul class="list-unstyled mb-4">
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Rutinas de ejercicio personalizadas según tus objetivos</li>
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Planes de alimentación adaptados a tus necesidades</li>
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Seguimiento detallado de tus medidas y progreso</li>
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Comunicación directa con entrenadores y nutricionistas</li>
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Calendario de actividades y recordatorios</li>
+                        <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Informes y estadísticas de tu evolución</li>
                     </ul>
-                    <p>
+                    <p class="mb-0">
                         Con Fitness360, tendrás todo lo que necesitas para transformar tu cuerpo y mejorar tu calidad de vida de manera efectiva y sostenible.
                     </p>
                 </div>
@@ -218,78 +299,90 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonios" class="testimonials section-bg">
-        <div class="container">
-            <div class="section-title">
-                <h2>Testimonios</h2>
-                <p>Descubre lo que nuestros usuarios opinan sobre Fitness360 y cómo ha transformado sus vidas.</p>
+    <section id="testimonios" class="py-5 bg-light position-relative">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3 position-relative pb-3 text-success">Testimonios</h2>
+                <p class="lead">Descubre lo que nuestros usuarios opinan sobre Fitness360 y cómo ha transformado sus vidas.</p>
             </div>
 
             <!-- Carousel - Componente Bootstrap para presentar testimonios en un carrusel deslizante -->
             <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner py-4">
                     <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="testimonial-item">
-                                    <img src="images/testimonial-1.jpg" class="testimonial-img" alt="">
-                                    <h3>María García</h3>
-                                    <h4>Cliente desde 2022</h4>
-                                    <p>
-                                        <i class="fas fa-quote-left"></i>
+                        <div class="row g-4">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+                                <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="images/service-1.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="María García">
+                                        <div>
+                                            <h3 class="fs-5 fw-bold mb-1 text-success">María García</h3>
+                                            <h4 class="fs-6 text-muted">Cliente desde 2022</h4>
+                                        </div>
+                                        <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+                                    </div>
+                                    <p class="fst-italic mb-0">
                                         Fitness360 cambió completamente mi enfoque hacia el ejercicio. Las rutinas personalizadas y el seguimiento constante me han ayudado a perder 15kg en 6 meses de forma saludable.
-                                        <i class="fas fa-quote-right"></i>
                                     </p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="testimonial-item">
-                                    <img src="images/testimonial-2.jpg" class="testimonial-img" alt="">
-                                    <h3>Carlos Rodríguez</h3>
-                                    <h4>Cliente desde 2021</h4>
-                                    <p>
-                                        <i class="fas fa-quote-left"></i>
+                                <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="images/service-2.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="Carlos Rodríguez">
+                                        <div>
+                                            <h3 class="fs-5 fw-bold mb-1 text-success">Carlos Rodríguez</h3>
+                                            <h4 class="fs-6 text-muted">Cliente desde 2021</h4>
+                                        </div>
+                                        <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+                                    </div>
+                                    <p class="fst-italic mb-0">
                                         Como deportista amateur, Fitness360 me ha ayudado a mejorar mi rendimiento y prevenir lesiones. Los planes nutricionales son excelentes y las revisiones periódicas me mantienen motivado.
-                                        <i class="fas fa-quote-right"></i>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="testimonial-item">
-                                    <img src="images/testimonial-3.jpg" class="testimonial-img" alt="">
-                                    <h3>Laura Martínez</h3>
-                                    <h4>Cliente desde 2023</h4>
-                                    <p>
-                                        <i class="fas fa-quote-left"></i>
+                        <div class="row g-4">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+                                <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="images/service-3.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="Laura Martínez">
+                                        <div>
+                                            <h3 class="fs-5 fw-bold mb-1 text-success">Laura Martínez</h3>
+                                            <h4 class="fs-6 text-muted">Cliente desde 2023</h4>
+                                        </div>
+                                        <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+                                    </div>
+                                    <p class="fst-italic mb-0">
                                         Después de mi embarazo, necesitaba recuperar mi forma física. Gracias a Fitness360 y sus profesionales, he conseguido resultados increíbles en poco tiempo y de forma segura.
-                                        <i class="fas fa-quote-right"></i>
                                     </p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="testimonial-item">
-                                    <img src="images/testimonial-4.jpg" class="testimonial-img" alt="">
-                                    <h3>Javier López</h3>
-                                    <h4>Cliente desde 2022</h4>
-                                    <p>
-                                        <i class="fas fa-quote-left"></i>
+                                <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="images/features.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="Javier López">
+                                        <div>
+                                            <h3 class="fs-5 fw-bold mb-1 text-success">Javier López</h3>
+                                            <h4 class="fs-6 text-muted">Cliente desde 2022</h4>
+                                        </div>
+                                        <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+                                    </div>
+                                    <p class="fst-italic mb-0">
                                         Lo que más valoro de Fitness360 es la atención personalizada. Siempre recibo respuestas rápidas a mis dudas y los entrenadores se adaptan a mis necesidades cambiantes.
-                                        <i class="fas fa-quote-right"></i>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev bg-success rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <button class="carousel-control-next bg-success rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Siguiente</span>
                 </button>
@@ -298,70 +391,90 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contacto</h2>
-                <p>¿Tienes alguna pregunta sobre Fitness360? Ponte en contacto con nosotros y te responderemos lo antes posible.</p>
+    <section id="contacto" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3 position-relative pb-3 text-success">Contacto</h2>
+                <p class="lead">¿Tienes alguna pregunta sobre Fitness360? Ponte en contacto con nosotros y te responderemos lo antes posible.</p>
             </div>
 
-            <div class="row">
-                <div class="col-lg-5 d-flex align-items-stretch">
-                    <div class="info">
-                        <div class="address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <h4>Ubicación:</h4>
-                            <p>Calle Ejemplo 123, 28001 Madrid, España</p>
+            <div class="row g-4">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm me-3 contact-icon">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fs-5 fw-bold mb-1">Ubicación:</h4>
+                                    <p class="mb-0">Calle Ejemplo 123, 28001 Madrid, España</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="email">
-                            <i class="fas fa-envelope"></i>
-                            <h4>Email:</h4>
-                            <p>info@fitness360.com</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm me-3 contact-icon">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fs-5 fw-bold mb-1">Email:</h4>
+                                    <p class="mb-0">info@fitness360.com</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="phone">
-                            <i class="fas fa-phone"></i>
-                            <h4>Teléfono:</h4>
-                            <p>+34 912 345 678</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm me-3 contact-icon">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fs-5 fw-bold mb-1">Teléfono:</h4>
+                                    <p class="mb-0">+34 912 345 678</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6167379590934!2d-3.7037974846309875!3d40.41694937936723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2zUHVlcnRhIGRlbCBTb2wsIE1hZHJpZCwgRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1621345678901!5m2!1ses!2ses" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                        <div class="rounded-4 overflow-hidden shadow-sm">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6167379590934!2d-3.7037974846309875!3d40.41694937936723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2zUHVlcnRhIGRlbCBTb2wsIE1hZHJpZCwgRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1621345678901!5m2!1ses!2ses" class="map-iframe" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <div class="col-lg-7">
                     <!-- Formulario de contacto - Componentes Bootstrap para formularios con validación -->
-                    <form action="php/contact.php" method="post" role="form" class="php-email-form">
+                    <form action="php/contact.php" method="post" role="form" class="bg-white p-4 rounded-4 shadow-sm">
                         <fieldset>
-                            <legend>Información de Contacto</legend>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="name">Tu Nombre</label>
-                                    <input type="text" name="name" class="form-control" id="name" required>
+                            <legend class="fw-bold text-success mb-4 pb-2 border-bottom">Información de Contacto</legend>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label fw-medium">Tu Nombre</label>
+                                    <input type="text" name="name" class="form-control rounded-3 py-2" id="name" required>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email">Tu Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" required>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-medium">Tu Email</label>
+                                    <input type="email" class="form-control rounded-3 py-2" name="email" id="email" required>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="subject">Asunto</label>
-                                <input type="text" class="form-control" name="subject" id="subject" required>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label fw-medium">Asunto</label>
+                                <input type="text" class="form-control rounded-3 py-2" name="subject" id="subject" required>
                             </div>
-                            <div class="form-group">
-                                <label for="message">Mensaje</label>
-                                <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-medium">Mensaje</label>
+                                <textarea class="form-control rounded-3 py-2" name="message" id="message" rows="6" required></textarea>
                             </div>
-                            <div class="form-group mt-3">
-                                <label>¿Cómo nos conociste?</label>
-                                <div class="form-check">
+                            <div class="mb-4">
+                                <label class="form-label fw-medium">¿Cómo nos conociste?</label>
+                                <div class="form-check mb-2">
                                     <input class="form-check-input" type="radio" name="conocio" id="conocio1" value="redes" checked>
                                     <label class="form-check-label" for="conocio1">
                                         Redes Sociales
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check mb-2">
                                     <input class="form-check-input" type="radio" name="conocio" id="conocio2" value="amigos">
                                     <label class="form-check-label" for="conocio2">
                                         Amigos o Familiares
@@ -374,15 +487,15 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <label>Servicios que te interesan</label>
-                                <div class="form-check">
+                            <div class="mb-4">
+                                <label class="form-label fw-medium">Servicios que te interesan</label>
+                                <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" name="servicios[]" id="servicio1" value="entrenamiento">
                                     <label class="form-check-label" for="servicio1">
                                         Entrenamiento Personal
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" name="servicios[]" id="servicio2" value="nutricion">
                                     <label class="form-check-label" for="servicio2">
                                         Planes Nutricionales
@@ -395,9 +508,9 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <label for="preferencia">Preferencia de contacto</label>
-                                <select class="form-select" id="preferencia" name="preferencia">
+                            <div class="mb-4">
+                                <label for="preferencia" class="form-label fw-medium">Preferencia de contacto</label>
+                                <select class="form-select rounded-3 py-2" id="preferencia" name="preferencia">
                                     <optgroup label="Medios digitales">
                                         <option value="email">Email</option>
                                         <option value="whatsapp">WhatsApp</option>
@@ -410,13 +523,13 @@
                             </div>
                         </fieldset>
                         <div class="my-3">
-                            <div class="loading">Cargando</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                            <div class="bg-light p-3 rounded-3 text-center d-none">Cargando</div>
+                            <div class="bg-danger bg-opacity-10 p-3 rounded-3 text-danger d-none">Error al enviar el mensaje</div>
+                            <div class="bg-success bg-opacity-10 p-3 rounded-3 text-success d-none">Tu mensaje ha sido enviado. ¡Gracias!</div>
                         </div>
-                        <div class="btn-group w-100" role="group" aria-label="Botones de formulario">
-                            <button type="submit" class="btn btn-success">Enviar Mensaje</button>
-                            <button type="reset" class="btn btn-secondary">Limpiar</button>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success py-2 px-4 flex-grow-1 fw-medium shadow-sm">Enviar Mensaje</button>
+                            <button type="reset" class="btn btn-secondary py-2 px-4 fw-medium shadow-sm">Limpiar</button>
                         </div>
                     </form>
                 </div>
@@ -425,13 +538,13 @@
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
-        <div class="footer-top">
+    <footer class="bg-white pt-5">
+        <div class="bg-white py-5 border-top border-bottom border-light">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Fitness360</h3>
-                        <p>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="fs-4 fw-bold text-success mb-4">Fitness360</h3>
+                        <p class="mb-3">
                             Calle Ejemplo 123 <br>
                             28001 Madrid<br>
                             España <br><br>
@@ -440,55 +553,63 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Enlaces Útiles</h4>
-                        <ul>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Inicio</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#servicios">Servicios</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#caracteristicas">Características</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#testimonios">Testimonios</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#contacto">Contacto</a></li>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Enlaces Útiles</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Inicio</a></li>
+                            <li class="mb-2"><a href="#servicios" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Servicios</a></li>
+                            <li class="mb-2"><a href="#caracteristicas" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Características</a></li>
+                            <li class="mb-2"><a href="#testimonios" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Testimonios</a></li>
+                            <li class="mb-2"><a href="#contacto" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Contacto</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Nuestros Servicios</h4>
-                        <ul>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Entrenamiento Personal</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Planes Nutricionales</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Seguimiento de Progreso</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Asesoramiento Deportivo</a></li>
-                            <li><i class="fas fa-chevron-right"></i> <a href="#">Comunidad Fitness</a></li>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Nuestros Servicios</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Entrenamiento Personal</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Planes Nutricionales</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Seguimiento de Progreso</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Asesoramiento Deportivo</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Comunidad Fitness</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Nuestras Redes Sociales</h4>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Nuestras Redes Sociales</h4>
                         <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades y consejos fitness.</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-                            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <div class="social-links d-flex gap-2 mt-3">
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container footer-bottom clearfix">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Fitness360</span></strong>. Todos los derechos reservados
-            </div>
-            <div class="credits">
-                Diseñado por <a href="#">Fitness360 Team</a>
+        <div class="bg-success py-4 text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <div>
+                            &copy; Copyright <strong><span class="text-light">Fitness360</span></strong>. Todos los derechos reservados
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div>
+                            Diseñado por <a href="#" class="text-light fw-medium">Fitness360 Team</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></a>
+    <!-- Botón volver arriba -->
+    <a href="#" class="volver-arriba shadow text-white"><i class="fas fa-arrow-up"></i></a>
 
     <!-- Bootstrap 5 JS Bundle with Popper - Biblioteca JavaScript para funcionalidades interactivas de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

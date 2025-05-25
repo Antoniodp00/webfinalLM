@@ -1,6 +1,6 @@
 /**
  * Fitness360 - Archivo JavaScript Principal
- * Este archivo contiene toda la funcionalidad JavaScript para el sitio web Fitness360
+ * Este archivo contiene las funcionalidades JavaScript esenciales para el sitio web Fitness360
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -40,59 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     /**
-     * Estado activo de los enlaces de la barra de navegación al hacer scroll
-     */
-    let navbarlinks = select('#navbarNav .nav-link', true);
-    const navbarlinksActive = () => {
-        let position = window.scrollY + 200;
-        navbarlinks.forEach(navbarlink => {
-            if (!navbarlink.hash) return;
-            let section = select(navbarlink.hash);
-            if (!section) return;
-            if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-                navbarlink.classList.add('active');
-            } else {
-                navbarlink.classList.remove('active');
-            }
-        });
-    };
-    window.addEventListener('load', navbarlinksActive);
-    onscroll(document, navbarlinksActive);
-
-    /**
-     * Desplazamiento a un elemento con compensación del encabezado
-     */
-    const scrollto = (el) => {
-        let header = select('header');
-        let offset = header.offsetHeight;
-
-        let elementPos = select(el).offsetTop;
-        window.scrollTo({
-            top: elementPos - offset,
-            behavior: 'smooth'
-        });
-    };
-
-    /**
-     * Alternar la clase .header-scrolled en el encabezado cuando se desplaza la página
-     */
-    let selectHeader = select('header');
-    if (selectHeader) {
-        const headerScrolled = () => {
-            if (window.scrollY > 100) {
-                selectHeader.classList.add('header-scrolled');
-            } else {
-                selectHeader.classList.remove('header-scrolled');
-            }
-        };
-        window.addEventListener('load', headerScrolled);
-        onscroll(document, headerScrolled);
-    }
-
-    /**
      * Botón para volver arriba
      */
-    let backtotop = select('.back-to-top');
+    let backtotop = select('.volver-arriba');
     if (backtotop) {
         const toggleBacktotop = () => {
             if (window.scrollY > 100) {
@@ -106,177 +56,111 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * Alternar navegación móvil
+     * Paginación de servicios
      */
-    on('click', '.mobile-nav-toggle', function(e) {
-        select('body').classList.toggle('mobile-nav-active');
-        this.classList.toggle('bi-list');
-        this.classList.toggle('bi-x');
-    });
+    const initServicesPagination = () => {
+        const paginationContainer = select('#servicios-pagination');
+        if (!paginationContainer) return;
 
-    /**
-     * Desplazamiento con compensación en enlaces con el nombre de clase .scrollto
-     */
-    on('click', '.scrollto', function(e) {
-        if (select(this.hash)) {
-            e.preventDefault();
+        const serviceCards = select('.servicio-card', true);
+        const pageLinks = select('#servicios-pagination li[data-page]', true);
+        const prevButton = select('#prev-page');
+        const nextButton = select('#next-page');
+        let currentPage = 1;
+        const totalPages = pageLinks.length;
 
-            let body = select('body');
-            if (body.classList.contains('mobile-nav-active')) {
-                body.classList.remove('mobile-nav-active');
-                let navbarToggle = select('.mobile-nav-toggle');
-                navbarToggle.classList.toggle('bi-list');
-                navbarToggle.classList.toggle('bi-x');
-            }
-            scrollto(this.hash);
-        }
-    }, true);
+        // Función para mostrar una página específica
+        const showPage = (pageNumber) => {
+            // Ocultar todas las tarjetas
+            serviceCards.forEach(card => {
+                card.style.display = 'none';
+            });
 
-    /**
-     * Desplazamiento con compensación al cargar la página con enlaces hash en la URL
-     */
-    window.addEventListener('load', () => {
-        if (window.location.hash) {
-            if (select(window.location.hash)) {
-                scrollto(window.location.hash);
-            }
-        }
-    });
+            // Mostrar solo las tarjetas de la página actual
+            serviceCards.forEach(card => {
+                if (parseInt(card.dataset.page) === pageNumber) {
+                    card.style.display = '';
+                }
+            });
 
-    /**
-     * Animación al hacer scroll
-     */
-    window.addEventListener('load', () => {
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
-    });
+            // Actualizar la clase active en los enlaces de paginación
+            pageLinks.forEach(link => {
+                if (parseInt(link.dataset.page) === pageNumber) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.classList.remove('active');
+                    link.removeAttribute('aria-current');
+                }
+            });
 
-    /**
-     * Validación y envío de formularios
-     */
-    const contactForm = document.querySelector('.php-email-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Validación simple
-            const name = this.querySelector('#name').value;
-            const email = this.querySelector('#email').value;
-            const subject = this.querySelector('#subject').value;
-            const message = this.querySelector('#message').value;
-
-            if (!name || !email || !subject || !message) {
-                alert('Por favor, rellena todos los campos del formulario.');
-                return;
+            // Actualizar el estado de los botones anterior/siguiente
+            if (pageNumber === 1) {
+                prevButton.classList.add('disabled');
+                prevButton.querySelector('a').setAttribute('aria-disabled', 'true');
+            } else {
+                prevButton.classList.remove('disabled');
+                prevButton.querySelector('a').removeAttribute('aria-disabled');
             }
 
-            // Validación de email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Por favor, introduce un email válido.');
-                return;
+            if (pageNumber === totalPages) {
+                nextButton.classList.add('disabled');
+                nextButton.querySelector('a').setAttribute('aria-disabled', 'true');
+            } else {
+                nextButton.classList.remove('disabled');
+                nextButton.querySelector('a').removeAttribute('aria-disabled');
             }
 
-            // Mostrar mensaje de carga
-            this.querySelector('.loading').style.display = 'block';
-            this.querySelector('.error-message').style.display = 'none';
-            this.querySelector('.sent-message').style.display = 'none';
+            // Actualizar la página actual
+            currentPage = pageNumber;
+        };
 
-            // Simular envío de formulario (en un escenario real, esto sería una llamada AJAX)
-            setTimeout(() => {
-                this.querySelector('.loading').style.display = 'none';
-                this.querySelector('.sent-message').style.display = 'block';
-                this.reset();
-            }, 2000);
-        });
-    }
-
-    /**
-     * Carrusel de testimonios
-     */
-    const testimonialCarousel = document.getElementById('testimonialCarousel');
-    if (testimonialCarousel) {
-        // Inicializar el carrusel de Bootstrap
-        const carousel = new bootstrap.Carousel(testimonialCarousel, {
-            interval: 5000
+        // Añadir event listeners a los enlaces de paginación
+        pageLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageNumber = parseInt(this.dataset.page);
+                showPage(pageNumber);
+            });
         });
 
-        // Añadir event listeners para controles personalizados
-        const prevButton = testimonialCarousel.querySelector('.carousel-control-prev');
-        const nextButton = testimonialCarousel.querySelector('.carousel-control-next');
-
+        // Añadir event listeners a los botones anterior/siguiente
         if (prevButton) {
-            prevButton.addEventListener('click', function() {
-                carousel.prev();
+            prevButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    showPage(currentPage - 1);
+                }
             });
         }
 
         if (nextButton) {
-            nextButton.addEventListener('click', function() {
-                carousel.next();
-            });
-        }
-    }
-
-    /**
-     * Efecto hover en las tarjetas de servicios
-     */
-    const serviceCards = document.querySelectorAll('.services .card');
-    if (serviceCards.length > 0) {
-        serviceCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0px 10px 30px rgba(1, 41, 112, 0.2)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0px 0 30px rgba(1, 41, 112, 0.1)';
-            });
-        });
-    }
-
-    /**
-     * Navegación responsive
-     */
-    const handleResponsiveNav = () => {
-        const width = window.innerWidth;
-        const navItems = document.querySelectorAll('.navbar-nav .nav-item');
-
-        if (width < 768) {
-            // Para móvil: Añadir clase especial a ciertos elementos de navegación
-            navItems.forEach(item => {
-                if (item.classList.contains('hide-sm')) {
-                    item.style.display = 'none';
+            nextButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    showPage(currentPage + 1);
                 }
             });
-        } else {
-            // Para escritorio: Restablecer visualización
-            navItems.forEach(item => {
-                item.style.display = '';
-            });
         }
+
+        // Mostrar la primera página al cargar
+        showPage(1);
     };
 
-    // Ejecutar al cargar y redimensionar
-    window.addEventListener('load', handleResponsiveNav);
-    window.addEventListener('resize', handleResponsiveNav);
+    // Inicializar la paginación de servicios
+    initServicesPagination();
 
     /**
      * Persistencia de pestañas en el panel de cliente
      */
-    const clientTabs = document.querySelector('#dashboardTabs');
+    const clientTabs = document.querySelector('#pestanasPanelControl');
     if (clientTabs) {
         // Obtener la pestaña activa del localStorage
         const activeTab = localStorage.getItem('activeClientTab');
 
         // Si hay una pestaña activa almacenada, activarla
         if (activeTab) {
-            const tab = document.querySelector(`#dashboardTabs button[data-bs-target="${activeTab}"]`);
+            const tab = document.querySelector(`#pestanasPanelControl button[data-bs-target="${activeTab}"]`);
             if (tab) {
                 const tabInstance = new bootstrap.Tab(tab);
                 tabInstance.show();
@@ -284,11 +168,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Almacenar la pestaña activa cuando se hace clic en una pestaña
-        const tabs = document.querySelectorAll('#dashboardTabs button');
+        const tabs = document.querySelectorAll('#pestanasPanelControl button');
         tabs.forEach(tab => {
             tab.addEventListener('shown.bs.tab', function(event) {
                 localStorage.setItem('activeClientTab', event.target.getAttribute('data-bs-target'));
             });
         });
     }
+
+    /**
+     * Function to show "Coming Soon" message for features in development
+     */
+    window.showComingSoon = function() {
+        alert('Esta funcionalidad estará disponible próximamente.');
+    };
 });

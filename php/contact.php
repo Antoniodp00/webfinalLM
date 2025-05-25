@@ -100,12 +100,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="contact-page">
+<body class="pagina-contacto">
     <!-- Navbar - Componente Bootstrap para la barra de navegación responsive -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="../index.html">Fitness360</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fw-bold text-success" href="../index.html">Fitness360</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -126,18 +126,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a class="nav-link active" href="../index.html#contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light ms-lg-3" href="login.php">Iniciar Sesión</a>
+                        <a class="nav-link btn btn-success ms-lg-3 text-white fw-medium shadow-sm" href="login.php">Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Contact Form Response -->
-    <div class="container contact-container">
-        <div class="contact-header">
-            <h1>Contacto</h1>
-            <p>Gracias por ponerte en contacto con Fitness360</p>
+    <!-- Respuesta del Formulario de Contacto -->
+    <div class="container contenedor-contacto shadow-sm rounded-3">
+        <div class="cabecera-contacto text-center mb-4">
+            <h1 class="fw-bold text-success">Contacto</h1>
+            <p class="lead">Gracias por ponerte en contacto con Fitness360</p>
         </div>
 
         <?php if(!empty($success_message)): ?>
@@ -145,7 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <i class="fas fa-check-circle me-2"></i> <?php echo $success_message; ?>
             </div>
             <div class="text-center mt-4">
-                <a href="../index.html" class="btn btn-primary">Volver a la página principal</a>
+                <a href="../index.html" class="btn btn-success py-2 fw-medium shadow-sm">Volver a la página principal</a>
             </div>
         <?php elseif(!empty($error_message)): ?>
             <div class="alert alert-danger">
@@ -154,75 +154,117 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Formulario de contacto - Componentes Bootstrap para formulario con validación -->
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="mt-4">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" name="name" id="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
+                    <label for="name" class="form-label fw-medium">Nombre</label>
+                    <input type="text" name="name" id="name" class="form-control rounded-3 py-2 <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
                     <div class="invalid-feedback"><?php echo $name_err; ?></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" name="email" id="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <label for="email" class="form-label fw-medium">Correo Electrónico</label>
+                    <input type="email" name="email" id="email" class="form-control rounded-3 py-2 <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
                     <div class="invalid-feedback"><?php echo $email_err; ?></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="subject" class="form-label">Asunto</label>
-                    <input type="text" name="subject" id="subject" class="form-control <?php echo (!empty($subject_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $subject; ?>">
+                    <label for="subject" class="form-label fw-medium">Asunto</label>
+                    <input type="text" name="subject" id="subject" class="form-control rounded-3 py-2 <?php echo (!empty($subject_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $subject; ?>">
                     <div class="invalid-feedback"><?php echo $subject_err; ?></div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="message" class="form-label">Mensaje</label>
-                    <textarea name="message" id="message" rows="5" class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>"><?php echo $message; ?></textarea>
+                <div class="mb-4">
+                    <label for="message" class="form-label fw-medium">Mensaje</label>
+                    <textarea name="message" id="message" rows="5" class="form-control rounded-3 py-2 <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>"><?php echo $message; ?></textarea>
                     <div class="invalid-feedback"><?php echo $message_err; ?></div>
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                    <a href="../index.html" class="btn btn-outline-secondary">Volver a la página principal</a>
+                    <button type="submit" class="btn btn-success py-2 fw-medium shadow-sm">Enviar Mensaje</button>
+                    <a href="../index.html" class="btn btn-outline-success rounded-3 shadow-sm">Volver a la página principal</a>
                 </div>
             </form>
         <?php else: ?>
             <div class="alert alert-info">
-                <i class="fas fa-info-circle me-2"></i> No se ha enviado ningún formulario. Por favor, utilice el formulario de contacto en la <a href="../index.html#contacto">página principal</a>.
+                <i class="fas fa-info-circle me-2"></i> No se ha enviado ningún formulario. Por favor, utilice el formulario de contacto en la <a href="../index.html#contacto" class="text-success fw-medium">página principal</a>.
             </div>
             <div class="text-center mt-4">
-                <a href="../index.html" class="btn btn-primary">Volver a la página principal</a>
+                <a href="../index.html" class="btn btn-success py-2 fw-medium shadow-sm">Volver a la página principal</a>
             </div>
         <?php endif; ?>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Fitness360</h5>
-                    <p>Tu plataforma integral para gestionar tu salud y entrenamiento personal.</p>
-                </div>
-                <div class="col-md-3">
-                    <h5>Enlaces</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-white">Inicio</a></li>
-                        <li><a href="../index.html#servicios" class="text-white">Servicios</a></li>
-                        <li><a href="../index.html#contacto" class="text-white">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Contacto</h5>
-                    <address>
-                        <p><i class="fas fa-map-marker-alt"></i> Calle Ejemplo 123, Madrid</p>
-                        <p><i class="fas fa-phone"></i> +34 912 345 678</p>
-                        <p><i class="fas fa-envelope"></i> info@fitness360.com</p>
-                    </address>
+    <footer class="bg-white pt-5">
+        <div class="bg-white py-5 border-top border-bottom border-light">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <h3 class="fs-4 fw-bold text-success mb-4">Fitness360</h3>
+                        <p class="mb-3">
+                            Calle Ejemplo 123 <br>
+                            28001 Madrid<br>
+                            España <br><br>
+                            <strong>Teléfono:</strong> +34 912 345 678<br>
+                            <strong>Email:</strong> info@fitness360.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Enlaces Útiles</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="../index.html" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Inicio</a></li>
+                            <li class="mb-2"><a href="../index.html#servicios" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Servicios</a></li>
+                            <li class="mb-2"><a href="../index.html#caracteristicas" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Características</a></li>
+                            <li class="mb-2"><a href="../index.html#testimonios" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Testimonios</a></li>
+                            <li class="mb-2"><a href="../index.html#contacto" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Nuestros Servicios</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Entrenamiento Personal</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Planes Nutricionales</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Seguimiento de Progreso</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Asesoramiento Deportivo</a></li>
+                            <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Comunidad Fitness</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="fs-5 fw-bold text-success mb-4 position-relative pb-2">Nuestras Redes Sociales</h4>
+                        <p>Síguenos en nuestras redes sociales para estar al día de todas nuestras novedades y consejos fitness.</p>
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr>
-            <div class="text-center">
-                <p>&copy; <?php echo date("Y"); ?> Fitness360. Todos los derechos reservados.</p>
+        </div>
+
+        <div class="bg-success py-4 text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <div>
+                            &copy; Copyright <strong><span class="text-light">Fitness360</span></strong>. Todos los derechos reservados
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div>
+                            Diseñado por <a href="#" class="text-light fw-medium">Fitness360 Team</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Botón volver arriba -->
+    <a href="#" class="volver-arriba position-fixed bottom-0 end-0 m-4 bg-success rounded-circle d-flex align-items-center justify-content-center shadow text-white" style="width: 50px; height: 50px; z-index: 999;"><i class="fas fa-arrow-up"></i></a>
 
     <!-- Bootstrap 5 JS Bundle with Popper - Biblioteca JavaScript para funcionalidades interactivas de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -176,12 +176,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="login-page">
+<body class="pagina-login">
     <div class="container">
-        <div class="login-container">
-            <div class="login-logo">
-                <h1>Fitness360</h1>
-                <p>Inicia sesión en tu cuenta</p>
+        <div class="contenedor-login shadow-sm rounded-3">
+            <div class="logo-login">
+                <h1 class="fw-bold text-success">Fitness360</h1>
+                <p class="lead">Inicia sesión en tu cuenta</p>
             </div>
 
             <?php 
@@ -191,34 +191,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
 
             <!-- Formulario de login - Componentes Bootstrap para formulario de inicio de sesión con validación -->
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="login-form">
-                <div class="form-group">
-                    <label for="username">Nombre de Usuario</label>
-                    <input type="text" name="username" id="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="formulario-login">
+                <div class="form-group mb-3">
+                    <label for="username" class="form-label fw-medium">Nombre de Usuario</label>
+                    <input type="text" name="username" id="username" class="form-control rounded-3 py-2 <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                     <span class="invalid-feedback"><?php echo $username_err; ?></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label fw-medium">Contraseña</label>
+                    <input type="password" name="password" id="password" class="form-control rounded-3 py-2 <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                     <span class="invalid-feedback"><?php echo $password_err; ?></span>
                 </div>
 
-                <div class="form-group forgot-password">
-                    <a href="reset_password.php">¿Olvidaste tu contraseña?</a>
+                <div class="form-group olvido-contrasena mb-4">
+                    <a href="reset_password.php" class="text-success">¿Olvidaste tu contraseña?</a>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                <div class="form-group mb-4">
+                    <button type="submit" class="btn btn-success w-100 py-2 fw-medium shadow-sm">Iniciar Sesión</button>
                 </div>
 
-                <div class="form-group register-link">
-                    ¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a>
+                <div class="form-group enlace-registro text-center">
+                    ¿No tienes una cuenta? <a href="register.php" class="text-success fw-medium">Regístrate aquí</a>
                 </div>
             </form>
 
             <div class="text-center mt-4">
-                <a href="../index.html" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+                <a href="../index.html" class="btn btn-outline-success rounded-3 shadow-sm"><i class="fas fa-arrow-left me-2"></i> Volver a la página principal</a>
             </div>
         </div>
     </div>

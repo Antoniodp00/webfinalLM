@@ -2,120 +2,93 @@
 
 Este documento detalla cómo el proyecto Fitness360 cumple con los requisitos especificados.
 
-## 🔧 Diseño Responsive
+## Diseño Responsive
 
-### La página web tiene 3 tamaños y se realizan más de 2 cambios por tamaño ✅
-**Ubicación**: `styles.css` líneas 271-324 (media queries para diferentes tamaños: 991px, 768px, 576px)
-```css
-@media (max-width: 991px) {
-    #hero {
-        height: 100vh;
-        text-align: center;
-    }
-    #hero .animated {
-        animation: none;
-    }
-    #hero .hero-img {
-        text-align: center;
-    }
-    #hero .hero-img img {
-        width: 50%;
-    }
-}
+### La página web tiene 3 tamaños y se realizan más de 2 cambios por tamaño
+**Ubicación**: `index.html` - Utilizando clases de Bootstrap para responsive design
+```html
+<!-- Ejemplo en la sección hero -->
+<div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
+    <h1 class="fw-bold mb-4">Transforma tu cuerpo y tu vida con <span class="text-light position-relative">Fitness360</span></h1>
+    <h2 class="fs-4 fw-normal text-light opacity-75 mb-4">La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
+</div>
 
-@media (max-width: 768px) {
-    #hero h1 {
-        font-size: 28px;
-        line-height: 36px;
-    }
-    #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px;
-    }
-    #hero .hero-img img {
-        width: 70%;
-    }
-}
+<!-- Ejemplo en la sección de servicios -->
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+        <!-- Contenido de la tarjeta -->
+    </div>
+</div>
 
-@media (max-width: 575px) {
-    #hero .hero-img img {
-        width: 80%;
-    }
-    #hero .btn-get-started {
-        font-size: 16px;
-        padding: 10px 24px 11px 24px;
-    }
-    #hero .btn-watch-video {
-        font-size: 16px;
-        padding: 10px 0 8px 40px;
-        margin-left: 20px;
-    }
-}
+<!-- Ejemplo en la sección de testimonios -->
+<div class="col-lg-6 mb-4 mb-lg-0">
+    <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+        <!-- Contenido del testimonio -->
+    </div>
+</div>
 ```
 
-### Aparece/desaparece algún objeto en un cambio de tamaño de pantalla ✅
-**Ubicación**: `styles.css` líneas 1432-1434, 1447-1449, 1460-1462 (clases .hide-md, .hide-sm, .hide-xs)
-```css
-/* Hide certain elements on medium screens */
-.hide-md {
-    display: none !important;
-}
+### Aparece/desaparece algún objeto en un cambio de tamaño de pantalla
+**Ubicación**: `index.html` - Utilizando clases de Bootstrap para mostrar/ocultar elementos
+```html
+<!-- Ejemplo en la sección de contacto -->
+<div class="d-none d-md-block">
+    <!-- Contenido que solo se muestra en pantallas medianas y grandes -->
+</div>
 
-/* Hide certain elements on small screens */
-.hide-sm {
-    display: none !important;
-}
+<!-- Ejemplo en el footer -->
+<div class="d-md-none">
+    <!-- Contenido que solo se muestra en pantallas pequeñas -->
+</div>
 
-/* Hide certain elements on extra small screens */
-.hide-xs {
-    display: none !important;
-}
+<!-- Clases de Bootstrap para visibilidad responsive -->
+<span class="d-none d-lg-inline">Texto visible solo en pantallas grandes</span>
+<span class="d-lg-none">Texto visible solo en pantallas pequeñas y medianas</span>
 ```
 
-### Cambia de posición algún objeto en un cambio de tamaño de pantalla ✅
-**Ubicación**: `styles.css` líneas 1424-1429, 1439-1444 (clases .order-md-1, .order-md-2, .order-sm-1, .order-sm-2)
-```css
-/* For tablets */
-@media (max-width: 991px) {
-    .order-md-1 {
-        order: 1;
-    }
-    .order-md-2 {
-        order: 2;
-    }
-}
+### Cambia de posición algún objeto en un cambio de tamaño de pantalla
+**Ubicación**: `index.html` - Utilizando clases de orden de Bootstrap
+```html
+<!-- Ejemplo en la sección hero -->
+<div class="col-lg-6 order-1 order-lg-2">
+    <img src="images/hero-img.png" class="img-fluid" alt="Fitness360 Hero Image">
+</div>
 
-/* For mobile phones */
-@media (max-width: 768px) {
-    .order-sm-1 {
-        order: 1;
-    }
-    .order-sm-2 {
-        order: 2;
-    }
-}
+<!-- Ejemplo en la sección de características -->
+<div class="row g-4 align-items-center">
+    <div class="col-lg-6">
+        <img src="images/features.jpg" class="img-fluid rounded-4 shadow-sm" alt="Características de Fitness360">
+    </div>
+    <div class="col-lg-6 pt-4 pt-lg-0">
+        <!-- Contenido de características -->
+    </div>
+</div>
+
+<!-- Ejemplo en el footer -->
+<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+    <!-- Contenido alineado a la izquierda en pantallas medianas y grandes, centrado en pequeñas -->
+</div>
 ```
 
-## 🧱 Estructura HTML
+## Estructura HTML
 
-### Incluye header, footer y nav ✅
-**Ubicación**: `index.html` líneas 16-49 (header y nav), líneas 301-361 (footer)
+### Incluye header, footer y nav
+**Ubicación**: `index.html` líneas 16-49 (header y nav), líneas 541-608 (footer)
 ```html
 <!-- Header/Navbar -->
-<header id="header">
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<header id="header" class="shadow-sm bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <strong>Fitness360</strong>
+            <a class="navbar-brand fw-bold text-success" href="index.html">
+                Fitness360
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Inicio</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active rounded py-2 px-3" href="index.html">Inicio</a>
                     </li>
                     <!-- Más elementos de navegación -->
                 </ul>
@@ -125,65 +98,77 @@ Este documento detalla cómo el proyecto Fitness360 cumple con los requisitos es
 </header>
 ```
 
-### Incluye objeto de formato de fuente (b, strong, etc.) ✅
-**Ubicación**: `index.html` línea 20 (strong)
+### Incluye objeto de formato de fuente (b, strong, etc.)
+**Ubicación**: `index.html` línea 20 (strong), líneas 547-553 (strong)
 ```html
-<strong>Fitness360</strong>
+<a class="navbar-brand fw-bold text-success" href="index.html">
+    Fitness360
+</a>
+
+<p class="mb-3">
+    Calle Ejemplo 123 <br>
+    28001 Madrid<br>
+    España <br><br>
+    <strong>Teléfono:</strong> +34 912 345 678<br>
+    <strong>Email:</strong> info@fitness360.com<br>
+</p>
 ```
 
-### Incluye objeto de formato de párrafo (h1, p, etc.) ✅
+### Incluye objeto de formato de párrafo (h1, p, etc.)
 **Ubicación**: `index.html` líneas 56 (h1), 57 (h2), 77 (h5), 100 (p)
 ```html
-<h1>Transforma tu cuerpo y tu vida con <span>Fitness360</span></h1>
-<h2>La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
+<h1 class="fw-bold mb-4">Transforma tu cuerpo y tu vida con <span class="text-light position-relative">Fitness360</span></h1>
+<h2 class="fs-4 fw-normal text-light opacity-75 mb-4">La plataforma integral para gestionar tu salud y entrenamiento personal de forma efectiva</h2>
 <h5 class="modal-title" id="videoModalLabel">Video Promocional Fitness360</h5>
-<p>Fitness360 ofrece una gama completa de servicios para ayudarte a alcanzar tus objetivos de fitness y bienestar.</p>
+<p class="lead">Fitness360 ofrece una gama completa de servicios para ayudarte a alcanzar tus objetivos de fitness y bienestar.</p>
 ```
 
-### Incluye fondo de página (color o imagen) ✅
-**Ubicación**: `styles.css` líneas 31 (background-color para body), 166 (background para hero section)
-```css
-body {
-    font-family: var(--font-secondary);
-    color: var(--dark-color);
-    overflow-x: hidden;
-    background-color: var(--light-color);
-    line-height: 1.6;
-    font-weight: 400;
-}
+### Incluye fondo de página (color o imagen)
+**Ubicación**: `index.html` - Utilizando clases de Bootstrap para fondos
+```html
+<!-- Fondo de color para el hero section -->
+<section id="hero" class="d-flex align-items-center bg-black bg-gradient text-white">
+    <!-- Contenido del hero -->
+</section>
 
-#hero {
-    width: 100%;
-    height: 90vh;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-    padding-top: 90px;
-    position: relative;
-    overflow: hidden;
-}
+<!-- Fondo de color para la sección de servicios -->
+<section id="servicios" class="py-5 bg-light">
+    <!-- Contenido de servicios -->
+</section>
+
+<!-- Fondo de color para la sección de testimonios -->
+<section id="testimonios" class="py-5 bg-light position-relative">
+    <!-- Contenido de testimonios -->
+</section>
+
+<!-- Fondo de color para el footer -->
+<div class="bg-success py-4 text-white">
+    <!-- Contenido del footer -->
+</div>
 ```
 
-### Incluye hipervínculo <a> ✅
+### Incluye hipervínculo
 **Ubicación**: `index.html` líneas 19, 28-44, 59-62 (enlaces de navegación y botones)
 ```html
-<a class="navbar-brand" href="index.html">
-    <strong>Fitness360</strong>
+<a class="navbar-brand fw-bold text-success" href="index.html">
+    Fitness360
 </a>
 
-<a class="nav-link active" href="index.html">Inicio</a>
+<a class="nav-link active rounded py-2 px-3" href="index.html">Inicio</a>
 
-<a href="php/register.php" class="btn-get-started">Regístrate Ahora</a>
-<a href="#" class="btn-watch-video" data-bs-toggle="modal" data-bs-target="#videoModal">
-    <i class="fas fa-play-circle"></i><span>Ver Video</span>
+<a href="php/register.php" class="btn btn-light btn-lg fw-semibold px-4 py-3 rounded-3 shadow-sm me-3 text-success text-uppercase">Regístrate Ahora</a>
+<a href="#" class="btn btn-outline-light d-inline-flex align-items-center px-3 py-3 rounded-3" data-bs-toggle="modal" data-bs-target="#videoModal">
+    <i class="fas fa-play-circle fs-4 me-2"></i><span>Ver Video</span>
 </a>
 ```
 
-### Incluye algún iframe ✅
-**Ubicación**: `index.html` línea 264 (iframe de Google Maps)
+### Incluye algún iframe
+**Ubicación**: `index.html` línea 441 (iframe de Google Maps)
 ```html
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6167379590934!2d-3.7037974846309875!3d40.41694937936723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2zUHVlcnRhIGRlbCBTb2wsIE1hZHJpZCwgRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1621345678901!5m2!1ses!2ses" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6167379590934!2d-3.7037974846309875!3d40.41694937936723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2zUHVlcnRhIGRlbCBTb2wsIE1hZHJpZCwgRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1621345678901!5m2!1ses!2ses" class="map-iframe" allowfullscreen></iframe>
 ```
 
-### Incluye objeto multimedia (video, audio, YouTube…) ✅
+### Incluye objeto multimedia (video, audio, YouTube…)
 **Ubicación**: `index.html` líneas 81-85 (elemento video)
 ```html
 <div class="ratio ratio-16x9">
@@ -194,48 +179,73 @@ body {
 </div>
 ```
 
-## 📝 Formulario
+## Formulario
 
-### Formulario incluye fieldset, legend, label, textarea ✅
-**Ubicación**: `index.html` líneas 270 (fieldset), 271 (legend), 274, 278, 283, 287 (label), 288 (textarea)
+### Formulario incluye fieldset, legend, label, textarea
+**Ubicación**: `index.html` líneas 449 (fieldset), 450 (legend), 453, 457, 462, 466 (label), 467 (textarea)
 ```html
-<fieldset>
-    <legend>Información de Contacto</legend>
-    <!-- Campos del formulario -->
-    <div class="form-group">
-        <label for="name">Tu Nombre</label>
-        <input type="text" name="name" class="form-control" id="name" required>
-    </div>
-    <div class="form-group">
-        <label for="message">Mensaje</label>
-        <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
-    </div>
-</fieldset>
+<form action="php/contact.php" method="post" role="form" class="bg-white p-4 rounded-4 shadow-sm">
+    <fieldset>
+        <legend class="fw-bold text-success mb-4 pb-2 border-bottom">Información de Contacto</legend>
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="name" class="form-label fw-medium">Tu Nombre</label>
+                <input type="text" name="name" class="form-control rounded-3 py-2" id="name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label fw-medium">Tu Email</label>
+                <input type="email" class="form-control rounded-3 py-2" name="email" id="email" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label fw-medium">Asunto</label>
+            <input type="text" class="form-control rounded-3 py-2" name="subject" id="subject" required>
+        </div>
+        <div class="mb-4">
+            <label for="message" class="form-label fw-medium">Mensaje</label>
+            <textarea class="form-control rounded-3 py-2" name="message" id="message" rows="6" required></textarea>
+        </div>
+    </fieldset>
+    <!-- Resto del formulario -->
+</form>
 ```
 
-### Formulario incluye 4 o 5 de los input type= (text, radio, checkbox, submit, reset) ✅
-**Ubicación**: `index.html` líneas 275 (text), 293-308 (radio), 314-329 (checkbox), 352 (submit), 353 (reset)
+### Formulario incluye 4 o 5 de los input type= (text, radio, checkbox, submit, reset)
+**Ubicación**: `index.html` líneas 454 (text), 458 (email), 463 (text), 472-487 (radio), 493-508 (checkbox), 531-532 (submit, reset)
 ```html
 <!-- Input type text -->
-<input type="text" name="name" class="form-control" id="name" required>
+<input type="text" name="name" class="form-control rounded-3 py-2" id="name" required>
+
+<!-- Input type email -->
+<input type="email" class="form-control rounded-3 py-2" name="email" id="email" required>
 
 <!-- Input type radio -->
-<input class="form-check-input" type="radio" name="conocio" id="conocio1" value="redes" checked>
+<div class="form-check mb-2">
+    <input class="form-check-input" type="radio" name="conocio" id="conocio1" value="redes" checked>
+    <label class="form-check-label" for="conocio1">
+        Redes Sociales
+    </label>
+</div>
 
 <!-- Input type checkbox -->
-<input class="form-check-input" type="checkbox" name="servicios[]" id="servicio1" value="entrenamiento">
+<div class="form-check mb-2">
+    <input class="form-check-input" type="checkbox" name="servicios[]" id="servicio1" value="entrenamiento">
+    <label class="form-check-label" for="servicio1">
+        Entrenamiento Personal
+    </label>
+</div>
 
 <!-- Input types submit y reset -->
-<div class="btn-group w-100" role="group" aria-label="Botones de formulario">
-    <button type="submit" class="btn btn-success">Enviar Mensaje</button>
-    <button type="reset" class="btn btn-secondary">Limpiar</button>
+<div class="d-flex gap-2">
+    <button type="submit" class="btn btn-success py-2 px-4 flex-grow-1 fw-medium shadow-sm">Enviar Mensaje</button>
+    <button type="reset" class="btn btn-secondary py-2 px-4 fw-medium shadow-sm">Limpiar</button>
 </div>
 ```
 
-### Formulario incluye select con option u optgroup ✅
-**Ubicación**: `index.html` líneas 334-343 (select con optgroup y option)
+### Formulario incluye select con option u optgroup
+**Ubicación**: `index.html` líneas 513-522 (select con optgroup y option)
 ```html
-<select class="form-select" id="preferencia" name="preferencia">
+<select class="form-select rounded-3 py-2" id="preferencia" name="preferencia">
     <optgroup label="Medios digitales">
         <option value="email">Email</option>
         <option value="whatsapp">WhatsApp</option>
@@ -247,20 +257,78 @@ body {
 </select>
 ```
 
-## 🎨 Estilos CSS
+## Estilos CSS
 
-### Se definen todas las propiedades de formato con CSS (no HTML) ✅
-**Ubicación**: Todo el formato se define en `styles.css`
+### Se definen todas las propiedades de formato con CSS (no HTML)
+**Ubicación**: El formato se define principalmente mediante clases de Bootstrap en el HTML y personalizaciones en `styles.css`
 
-### El diseño realizado con CSS es adecuado ✅
-**Ubicación**: `styles.css` (diseño completo y coherente)
-
-## 📦 Bootstrap
-
-### Incluye tabla con formato definido por el alumno ✅
-**Ubicación**: `client_dashboard.php` líneas 215-244 (estructura de tabla para información personal)
 ```html
-<div class="profile-info">
+<!-- Ejemplo de uso de clases de Bootstrap para formato -->
+<div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+    <div class="d-flex align-items-center mb-3">
+        <img src="images/testimonial-1.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="">
+        <div>
+            <h3 class="fs-5 fw-bold mb-1 text-success">María García</h3>
+            <h4 class="fs-6 text-muted">Cliente desde 2022</h4>
+        </div>
+        <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+    </div>
+    <p class="fst-italic mb-0">
+        Fitness360 cambió completamente mi enfoque hacia el ejercicio. Las rutinas personalizadas y el seguimiento constante me han ayudado a perder 15kg en 6 meses de forma saludable.
+    </p>
+</div>
+```
+
+```css
+/* Estilos personalizados en styles.css */
+@keyframes up-down {
+    0% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.animado {
+    animation: up-down 2.5s ease-in-out infinite alternate-reverse both;
+}
+
+.titulo-seccion h2::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #A5D6A7;
+    bottom: 0;
+    left: calc(50% - 30px);
+    border-radius: 5px;
+}
+```
+
+### El diseño realizado con CSS es adecuado
+**Ubicación**: Combinación de clases de Bootstrap en `index.html` y estilos personalizados en `styles.css` (diseño completo y coherente)
+
+```html
+<!-- Ejemplo de diseño con Bootstrap -->
+<section id="caracteristicas" class="py-5 bg-white position-relative overflow-hidden">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3 position-relative pb-3 text-success">Características de Fitness360</h2>
+            <p class="lead">Descubre todas las herramientas que Fitness360 pone a tu disposición para alcanzar tus objetivos de forma eficiente.</p>
+        </div>
+        <!-- Más contenido -->
+    </div>
+</section>
+```
+
+## Bootstrap
+
+### Incluye tabla con formato definido por el alumno
+**Ubicación**: `client_dashboard.php` líneas 215-244 (estructura de información personal)
+```html
+<div class="info-perfil">
     <p><strong>Nombre:</strong> <?php echo htmlspecialchars($client_info["nombre"] ?? "N/A"); ?> <?php echo htmlspecialchars($client_info["apellidos"] ?? ""); ?></p>
     <p><strong>Usuario:</strong> <?php echo htmlspecialchars($client_info["nombreUsuario"] ?? "N/A"); ?></p>
     <p><strong>Correo:</strong> <?php echo htmlspecialchars($client_info["correo"] ?? "N/A"); ?></p>
@@ -290,24 +358,28 @@ body {
         ?>
     </p>
 </div>
-
-### Incluye imagen con formato definido por el alumno ✅
-**Ubicación**: `index.html` líneas 66, 123, 136, 149 (imágenes con formato)
-```html
-<!-- Imagen hero con clase img-fluid y animated -->
-<img src="images/hero-img.png" class="img-fluid animated" alt="Fitness360 Hero Image">
-
-<!-- Imagen de servicio en card-img -->
-<div class="card-img">
-    <img src="images/service-1.jpg" alt="Entrenamiento Personalizado">
-</div>
-
-<!-- Imagen de características con clase img-fluid -->
-<img src="images/features.jpg" class="img-fluid" alt="Características de Fitness360">
 ```
 
-### Incluye alerta ✅
-**Ubicación**: `index.html` línea 190, `client_dashboard.php` líneas 190, 255, 307, 347 (alertas)
+### Incluye imagen con formato definido por el alumno
+**Ubicación**: `index.html` - Imágenes con formato usando clases de Bootstrap
+```html
+<!-- Imagen hero con clase img-fluid -->
+<img src="images/hero-img.png" class="img-fluid" alt="Fitness360 Hero Image">
+
+<!-- Imagen de servicio con formato Bootstrap -->
+<div class="overflow-hidden">
+    <img src="images/service-1.jpg" class="card-img-top" alt="Entrenamiento Personalizado">
+</div>
+
+<!-- Imagen de características con clases de Bootstrap -->
+<img src="images/features.jpg" class="img-fluid rounded-4 shadow-sm" alt="Características de Fitness360">
+
+<!-- Imagen de testimonio con clases de Bootstrap -->
+<img src="images/testimonial-1.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="">
+```
+
+### Incluye alerta
+**Ubicación**: `client_dashboard.php` líneas 190, 255, 308, 348 (alertas)
 ```html
 <!-- Alerta de error -->
 <div class="alert alert-danger"><?php echo $error_message; ?></div>
@@ -317,29 +389,46 @@ body {
 
 <!-- Alerta informativa -->
 <div class="alert alert-info">No tienes dietas asignadas.</div>
+
+<!-- Alerta informativa -->
+<div class="alert alert-info">No tienes rutinas asignadas.</div>
 ```
 
-### Incluye botón con formato definido por el alumno ✅
-**Ubicación**: `index.html` líneas 59, 352-353 (botones con formato)
+### Incluye botón con formato definido por el alumno
+**Ubicación**: `index.html` - Botones con formato usando clases de Bootstrap
 ```html
-<!-- Botón de registro con clase personalizada -->
-<a href="php/register.php" class="btn-get-started">Regístrate Ahora</a>
+<!-- Botón de registro con clases de Bootstrap -->
+<a href="php/register.php" class="btn btn-light btn-lg fw-semibold px-4 py-3 rounded-3 shadow-sm me-3 text-success text-uppercase">Regístrate Ahora</a>
+
+<!-- Botón de video con clases de Bootstrap -->
+<a href="#" class="btn btn-outline-light d-inline-flex align-items-center px-3 py-3 rounded-3" data-bs-toggle="modal" data-bs-target="#videoModal">
+    <i class="fas fa-play-circle fs-4 me-2"></i><span>Ver Video</span>
+</a>
 
 <!-- Botones de formulario con clases de Bootstrap -->
-<button type="submit" class="btn btn-success">Enviar Mensaje</button>
-<button type="reset" class="btn btn-secondary">Limpiar</button>
+<button type="submit" class="btn btn-success py-2 px-4 flex-grow-1 fw-medium shadow-sm">Enviar Mensaje</button>
+<button type="reset" class="btn btn-secondary py-2 px-4 fw-medium shadow-sm">Limpiar</button>
 ```
 
-### Incluye grupo de botones con formato definido por el alumno ✅
-**Ubicación**: `index.html` líneas 415-418 (grupo de botones)
+### Incluye grupo de botones con formato definido por el alumno
+**Ubicación**: `index.html` - Grupo de botones con formato usando clases de Bootstrap
 ```html
-<div class="btn-group w-100" role="group" aria-label="Botones de formulario">
-    <button type="submit" class="btn btn-success">Enviar Mensaje</button>
-    <button type="reset" class="btn btn-secondary">Limpiar</button>
+<div class="d-flex gap-2">
+    <button type="submit" class="btn btn-success py-2 px-4 flex-grow-1 fw-medium shadow-sm">Enviar Mensaje</button>
+    <button type="reset" class="btn btn-secondary py-2 px-4 fw-medium shadow-sm">Limpiar</button>
+</div>
+
+<!-- Grupo de botones para redes sociales -->
+<div class="d-flex gap-2 mt-3">
+    <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-youtube"></i></a>
+    <a href="#" class="bg-success rounded-circle d-flex align-items-center justify-content-center shadow-sm text-white" style="width: 40px; height: 40px;"><i class="fab fa-linkedin-in"></i></a>
 </div>
 ```
 
-### Incluye desplegable ✅
+### Incluye desplegable
 **Ubicación**: `client_dashboard.php` líneas 165-175 (menú desplegable)
 ```html
 <li class="nav-item dropdown">
@@ -355,7 +444,7 @@ body {
 </li>
 ```
 
-### Incluye badge ✅
+### Incluye badge
 **Ubicación**: `client_dashboard.php` líneas 237-240 (badges para estado)
 ```html
 <span class="badge bg-success">Activo</span>
@@ -364,15 +453,17 @@ body {
 <span class="badge bg-secondary">Desconocido</span>
 ```
 
-### Incluye mensaje que se oculta/despliega ✅
-**Ubicación**: `index.html` líneas 411-413 (mensajes de carga, error y éxito)
+### Incluye mensaje que se oculta/despliega
+**Ubicación**: `index.html` líneas 526-528 (mensajes con clases de Bootstrap para mostrar/ocultar)
 ```html
-<div class="loading">Cargando</div>
-<div class="error-message"></div>
-<div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+<div class="my-3">
+    <div class="bg-light p-3 rounded-3 text-center d-none">Cargando</div>
+    <div class="bg-danger bg-opacity-10 p-3 rounded-3 text-danger d-none">Error al enviar el mensaje</div>
+    <div class="bg-success bg-opacity-10 p-3 rounded-3 text-success d-none">Tu mensaje ha sido enviado. ¡Gracias!</div>
+</div>
 ```
 
-### Incluye modal (ventana emergente) ✅
+### Incluye modal (ventana emergente)
 **Ubicación**: `index.html` líneas 73-93 (modal para video)
 ```html
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
@@ -398,79 +489,84 @@ body {
 </div>
 ```
 
-### Incluye barra de estado ✅
+### Incluye barra de estado
 **Ubicación**: `index.html` líneas 107-115 (barras de progreso)
 ```html
-<div class="progress mb-3" style="height: 25px;">
+<div class="progress mb-3 rounded-3">
     <div class="progress-bar bg-success" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Entrenamiento Personal (95%)</div>
 </div>
-<div class="progress mb-3" style="height: 25px;">
+<div class="progress mb-3 rounded-3">
     <div class="progress-bar bg-info" role="progressbar" style="width: 88%;" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">Planes Nutricionales (88%)</div>
 </div>
-<div class="progress mb-3" style="height: 25px;">
+<div class="progress mb-3 rounded-3">
     <div class="progress-bar bg-warning" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">Seguimiento de Progreso (92%)</div>
 </div>
 ```
 
-### Incluye paginación ✅
-**Ubicación**: `index.html` líneas 163-181 (paginación)
+### Incluye paginación
+**Ubicación**: `index.html` líneas 244-263 (paginación con clases de Bootstrap personalizadas)
 ```html
 <nav aria-label="Navegación de servicios">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+    <ul class="pagination justify-content-center" id="servicios-pagination">
+        <li class="page-item disabled" id="prev-page">
+            <a class="page-link rounded-start-3 border-0 shadow-sm" href="#servicios" tabindex="-1" aria-disabled="true">Anterior</a>
         </li>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">1</a>
+        <li class="page-item active" aria-current="page" data-page="1">
+            <a class="page-link border-0 bg-success shadow-sm" href="#servicios">1</a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
+        <li class="page-item" data-page="2">
+            <a class="page-link border-0 shadow-sm" href="#servicios">2</a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
+        <li class="page-item" data-page="3">
+            <a class="page-link border-0 shadow-sm" href="#servicios">3</a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#">Siguiente</a>
+        <li class="page-item" id="next-page">
+            <a class="page-link rounded-end-3 border-0 shadow-sm" href="#servicios">Siguiente</a>
         </li>
     </ul>
 </nav>
 ```
 
-### Incluye lista ✅
-**Ubicación**: `index.html` líneas 204-211 (lista con iconos), `php/contact.php` líneas 204-208 (lista sin estilo)
+### Incluye lista
+**Ubicación**: `index.html` líneas 285-292 (listas con clases de Bootstrap)
 ```html
-<!-- Lista con iconos -->
-<ul>
-    <li><i class="fas fa-check-circle"></i> Rutinas de ejercicio personalizadas según tus objetivos</li>
-    <li><i class="fas fa-check-circle"></i> Planes de alimentación adaptados a tus necesidades</li>
-    <li><i class="fas fa-check-circle"></i> Seguimiento detallado de tus medidas y progreso</li>
-    <li><i class="fas fa-check-circle"></i> Comunicación directa con entrenadores y nutricionistas</li>
+<!-- Lista con iconos usando clases de Bootstrap -->
+<ul class="list-unstyled mb-4">
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Rutinas de ejercicio personalizadas según tus objetivos</li>
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Planes de alimentación adaptados a tus necesidades</li>
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Seguimiento detallado de tus medidas y progreso</li>
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Comunicación directa con entrenadores y nutricionistas</li>
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Calendario de actividades y recordatorios</li>
+    <li class="d-flex align-items-start mb-3"><i class="fas fa-check-circle text-white bg-success p-2 rounded-circle me-3 shadow-sm"></i> Informes y estadísticas de tu evolución</li>
 </ul>
 
-<!-- Lista sin estilo -->
+<!-- Lista de enlaces en el footer -->
 <ul class="list-unstyled">
-    <li><a href="../index.html" class="text-white">Inicio</a></li>
-    <li><a href="../index.html#servicios" class="text-white">Servicios</a></li>
-    <li><a href="../index.html#contacto" class="text-white">Contacto</a></li>
+    <li class="mb-2"><a href="#" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Inicio</a></li>
+    <li class="mb-2"><a href="#servicios" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Servicios</a></li>
+    <li class="mb-2"><a href="#caracteristicas" class="text-dark text-decoration-none d-inline-flex align-items-center"><i class="fas fa-chevron-right text-success me-2 small"></i> Características</a></li>
 </ul>
 ```
 
-### Incluye carrusel ✅
-**Ubicación**: `index.html` líneas 228-295 (carrusel de testimonios)
+### Incluye carrusel
+**Ubicación**: `index.html` líneas 310-389 (carrusel de testimonios con clases de Bootstrap)
 ```html
 <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner py-4">
         <div class="carousel-item active">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="testimonial-item">
-                        <img src="images/testimonial-1.jpg" class="testimonial-img" alt="">
-                        <h3>María García</h3>
-                        <h4>Cliente desde 2022</h4>
-                        <p>
-                            <i class="fas fa-quote-left"></i>
-                            Fitness360 cambió completamente mi enfoque hacia el ejercicio.
-                            <i class="fas fa-quote-right"></i>
+            <div class="row g-4">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="bg-white p-4 rounded-4 shadow-sm h-100 border-start border-success border-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="images/service-1.jpg" class="rounded-circle border-4 border border-success shadow-sm me-3" width="80" height="80" alt="María García">
+                            <div>
+                                <h3 class="fs-5 fw-bold mb-1 text-success">María García</h3>
+                                <h4 class="fs-6 text-muted">Cliente desde 2022</h4>
+                            </div>
+                            <i class="fas fa-quote-left ms-auto fs-3 text-success opacity-25"></i>
+                        </div>
+                        <p class="fst-italic mb-0">
+                            Fitness360 cambió completamente mi enfoque hacia el ejercicio. Las rutinas personalizadas y el seguimiento constante me han ayudado a perder 15kg en 6 meses de forma saludable.
                         </p>
                     </div>
                 </div>
@@ -479,21 +575,21 @@ body {
         </div>
         <!-- Más slides -->
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev bg-success rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+    <button class="carousel-control-next bg-success rounded-circle" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
 ```
 
-## 🗃️ Base de Datos
+## Base de Datos
 
-### Añade datos a la base de datos ✅
-**Ubicación**: `register.php` líneas 217-256 (inserción de datos de cliente)
+### Añade datos a la base de datos
+**Ubicación**: `register.php` (inserción de datos de cliente)
 ```php
 // Prepare an insert statement
 $sql = "INSERT INTO Cliente (nombreUsuario, nombre, apellidos, correo, password, telefono, fechaNacimiento, sexo, altura, estado) 
@@ -526,12 +622,12 @@ if($stmt = $db_connection->prepare($sql)) {
     // Attempt to execute the prepared statement
     if($stmt->execute()) {
         // Registration successful
-        $register_success = "Registro completado con éxito. Ahora puedes <a href='login.php'>iniciar sesión</a>.";
+        $register_success = "Registro completado con éxito. Ahora puedes iniciar sesión.";
     }
 }
 ```
 
-### Muestra datos de la base de datos ✅
+### Muestra datos de la base de datos
 **Ubicación**: `client_dashboard.php` líneas 58-105 (consultas para mostrar datos)
 ```php
 // Consulta para obtener información personal del cliente
@@ -557,34 +653,44 @@ $stmt->execute();
 $revisiones = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ```
 
-## 💻 JavaScript
+## JavaScript
 
-### Incluye 3 eventos programados con JavaScript ✅
-**Ubicación**: `main.js` líneas 60 (load), 60 (scroll), 163 (submit), 231-240 (mouseenter/mouseleave), 267 (resize)
+### Incluye 3 eventos programados con JavaScript
+**Ubicación**: `js/main.js` (eventos load, scroll, click)
 ```javascript
+// Evento DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+    // Código que se ejecuta cuando el DOM está completamente cargado
+});
+
 // Evento load
-window.addEventListener('load', navbarlinksActive);
+window.addEventListener('load', toggleBacktotop);
 
 // Evento scroll
-onscroll(document, navbarlinksActive);
+onscroll(document, toggleBacktotop);
 
-// Evento submit
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Código de validación del formulario
+// Evento click (implícito en el botón de volver arriba)
+let backtotop = select('.volver-arriba');
+if (backtotop) {
+    const toggleBacktotop = () => {
+        if (window.scrollY > 100) {
+            backtotop.classList.add('active');
+        } else {
+            backtotop.classList.remove('active');
+        }
+    };
+}
+
+// Evento shown.bs.tab para persistencia de pestañas
+tabs.forEach(tab => {
+    tab.addEventListener('shown.bs.tab', function(event) {
+        localStorage.setItem('activeClientTab', event.target.getAttribute('data-bs-target'));
+    });
 });
 
-// Eventos mouseenter/mouseleave
-card.addEventListener('mouseenter', function() {
-    this.style.transform = 'translateY(-10px)';
-    this.style.boxShadow = '0px 10px 30px rgba(1, 41, 112, 0.2)';
-});
-
-card.addEventListener('mouseleave', function() {
-    this.style.transform = 'translateY(0)';
-    this.style.boxShadow = '0px 0 30px rgba(1, 41, 112, 0.1)';
-});
-
-// Evento resize
-window.addEventListener('resize', handleResponsiveNav);
+// Función para mostrar mensaje "Coming Soon"
+window.showComingSoon = function() {
+    alert('Esta funcionalidad estará disponible próximamente.');
+};
 ```

@@ -278,12 +278,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="register-page">
+<body class="pagina-registro">
     <div class="container">
-        <div class="register-container">
-            <div class="register-logo">
-                <h1>Fitness360</h1>
-                <p>Crea tu cuenta</p>
+        <div class="contenedor-registro shadow-sm rounded-3">
+            <div class="logo-registro">
+                <h1 class="fw-bold text-success">Fitness360</h1>
+                <p class="lead">Crea tu cuenta</p>
             </div>
 
             <?php 
@@ -293,19 +293,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
 
             <!-- Formulario de registro - Componentes Bootstrap para formulario de registro con validación -->
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="register-form">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="formulario-registro">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="username">Nombre de Usuario</label>
-                            <input type="text" name="username" id="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label fw-medium">Nombre de Usuario</label>
+                            <input type="text" name="username" id="username" class="form-control rounded-3 py-2 <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                             <span class="invalid-feedback"><?php echo $username_err; ?></span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="correo">Correo Electrónico</label>
-                            <input type="email" name="correo" id="correo" class="form-control <?php echo (!empty($correo_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $correo; ?>">
+                        <div class="form-group mb-3">
+                            <label for="correo" class="form-label fw-medium">Correo Electrónico</label>
+                            <input type="email" name="correo" id="correo" class="form-control rounded-3 py-2 <?php echo (!empty($correo_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $correo; ?>">
                             <span class="invalid-feedback"><?php echo $correo_err; ?></span>
                         </div>
                     </div>
@@ -313,16 +313,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" name="password" id="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label fw-medium">Contraseña</label>
+                            <input type="password" name="password" id="password" class="form-control rounded-3 py-2 <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="confirm_password">Confirmar Contraseña</label>
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
+                        <div class="form-group mb-3">
+                            <label for="confirm_password" class="form-label fw-medium">Confirmar Contraseña</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control rounded-3 py-2 <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
                         </div>
                     </div>
@@ -330,16 +330,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
+                        <div class="form-group mb-3">
+                            <label for="nombre" class="form-label fw-medium">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control rounded-3 py-2 <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
                             <span class="invalid-feedback"><?php echo $nombre_err; ?></span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" name="apellidos" id="apellidos" class="form-control <?php echo (!empty($apellidos_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellidos; ?>">
+                        <div class="form-group mb-3">
+                            <label for="apellidos" class="form-label fw-medium">Apellidos</label>
+                            <input type="text" name="apellidos" id="apellidos" class="form-control rounded-3 py-2 <?php echo (!empty($apellidos_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellidos; ?>">
                             <span class="invalid-feedback"><?php echo $apellidos_err; ?></span>
                         </div>
                     </div>
@@ -347,15 +347,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="telefono">Teléfono (opcional)</label>
-                            <input type="tel" name="telefono" id="telefono" class="form-control" value="<?php echo $telefono; ?>">
+                        <div class="form-group mb-3">
+                            <label for="telefono" class="form-label fw-medium">Teléfono (opcional)</label>
+                            <input type="tel" name="telefono" id="telefono" class="form-control rounded-3 py-2" value="<?php echo $telefono; ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control <?php echo (!empty($fecha_nacimiento_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $fecha_nacimiento; ?>">
+                        <div class="form-group mb-3">
+                            <label for="fecha_nacimiento" class="form-label fw-medium">Fecha de Nacimiento</label>
+                            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control rounded-3 py-2 <?php echo (!empty($fecha_nacimiento_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $fecha_nacimiento; ?>">
                             <span class="invalid-feedback"><?php echo $fecha_nacimiento_err; ?></span>
                         </div>
                     </div>
@@ -363,27 +363,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Sexo</label>
-                            <div class="form-check">
+                        <div class="form-group mb-3">
+                            <label class="form-label fw-medium">Sexo</label>
+                            <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexo_m" value="M" <?php if($sexo == "M") echo "checked"; ?>>
                                 <label class="form-check-label" for="sexo_m">
                                     Masculino
                                 </label>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexo_f" value="F" <?php if($sexo == "F") echo "checked"; ?>>
                                 <label class="form-check-label" for="sexo_f">
                                     Femenino
                                 </label>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexo_o" value="O" <?php if($sexo == "O") echo "checked"; ?>>
                                 <label class="form-check-label" for="sexo_o">
                                     Otro
                                 </label>
                             </div>
-                            <div class="form-check">
+                            <div class="form-check mb-2">
                                 <input class="form-check-input" type="radio" name="sexo" id="sexo_ns" value="NS" <?php if($sexo == "NS" || $sexo == "") echo "checked"; ?>>
                                 <label class="form-check-label" for="sexo_ns">
                                     Prefiero no decirlo
@@ -393,25 +393,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="altura">Altura (cm)</label>
-                            <input type="number" name="altura" id="altura" class="form-control <?php echo (!empty($altura_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $altura; ?>" step="0.1" min="0">
+                        <div class="form-group mb-3">
+                            <label for="altura" class="form-label fw-medium">Altura (cm)</label>
+                            <input type="number" name="altura" id="altura" class="form-control rounded-3 py-2 <?php echo (!empty($altura_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $altura; ?>" step="0.1" min="0">
                             <span class="invalid-feedback"><?php echo $altura_err; ?></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group mt-4">
-                    <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                <div class="form-group mt-4 mb-4">
+                    <button type="submit" class="btn btn-success w-100 py-2 fw-medium shadow-sm">Registrarse</button>
                 </div>
 
-                <div class="form-group login-link">
-                    ¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a>
+                <div class="form-group enlace-login text-center">
+                    ¿Ya tienes una cuenta? <a href="login.php" class="text-success fw-medium">Inicia sesión aquí</a>
                 </div>
             </form>
 
             <div class="text-center mt-4">
-                <a href="../index.html" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+                <a href="../index.html" class="btn btn-outline-success rounded-3 shadow-sm"><i class="fas fa-arrow-left me-2"></i> Volver a la página principal</a>
             </div>
         </div>
     </div>
